@@ -111,8 +111,9 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('preferredLang', lang);
     };
 
-    const savedLang = localStorage.getItem('preferredLang') || 'en';
-    changeLang(savedLang);
+    const urlParams = new URLSearchParams(window.location.search);
+const savedLang = urlParams.get('lang') || localStorage.getItem('preferredLang') || 'en';
+changeLang(savedLang);
 
     const menuBtn = document.getElementById('menuBtn');
     const menuOverlay = document.getElementById('menuOverlay');
