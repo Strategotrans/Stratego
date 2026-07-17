@@ -237,22 +237,15 @@
 <script src="assets/js/app.js"></script>
 
     <script>
-        function updateRedirect() {
-            const currentLang = localStorage.getItem('preferredLang') || 'en';
-            const redirectInput = document.getElementById('redirect-input');
-            if (redirectInput) {
-                redirectInput.value = "https://strategotrans.eu/aciu.html?lang=" + currentLang;
-            }
+    function updateRedirect() {
+        const currentLang = localStorage.getItem('preferredLang') || 'en';
+        const redirectInput = document.getElementById('redirect-input');
+        if(redirectInput) {
+            redirectInput.value = "https://strategotrans.eu/aciu.html?lang=" + currentLang;
         }
-
-        // Jei jūsų mygtukai neturi klasės 'lang-btn', 
-        // pasitikrinkite, kokią klasę turi jūsų kalbų keitimo elementai.
-        // Jei tai yra <a> žymos meniu, galite naudoti:
-        document.querySelectorAll('.menu-card').forEach(btn => {
-            btn.addEventListener('click', updateRedirect);
-        });
-
-        window.addEventListener('load', updateRedirect);
-    </script>
+    }
+    // Paleidžiame inicializacijai, kai puslapis užsikrauna
+    window.addEventListener('load', updateRedirect);
+</script>
 </body>
 </html>
