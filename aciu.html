@@ -4,51 +4,61 @@
     <meta charset="UTF-8">
     <title>Stratego Trans | Thank You</title>
     <style>
-        body { margin: 0; padding: 0; background-color: #050608; color: #fff; font-family: 'Inter', sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
-        
-        .card { 
-            width: 90%; max-width: 450px; background: rgba(255, 255, 255, 0.03); 
-            backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 50px; border-radius: 30px; text-align: center;
+        body { 
+            margin: 0; padding: 0; 
+            background: #050608; /* Gilus, tamsus fonas */
+            color: #fff; 
+            font-family: 'Inter', sans-serif; 
+            display: flex; justify-content: center; align-items: center; 
+            min-height: 100vh;
+        }
+
+        /* Subtilus šviesos efektas fone */
+        body::before {
+            content: ''; position: absolute; width: 400px; height: 400px;
+            background: rgba(0, 255, 135, 0.08); filter: blur(150px); border-radius: 50%;
+        }
+
+        .container { 
+            position: relative; z-index: 1; text-align: center; padding: 20px;
         }
 
         .check-circle { 
-            width: 70px; height: 70px; background: rgba(0, 255, 135, 0.1); 
+            width: 80px; height: 80px; background: rgba(255, 255, 255, 0.05); 
             border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            margin: 0 auto 25px;
+            margin: 0 auto 30px; backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        h1 { font-size: 1.8rem; margin: 0 0 10px; }
-        p { color: rgba(255, 255, 255, 0.6); line-height: 1.5; margin-bottom: 30px; }
+        h1 { font-size: 2.5rem; font-weight: 600; margin: 0 0 15px; letter-spacing: -0.5px; }
+        p { color: rgba(255, 255, 255, 0.5); font-size: 1.1rem; max-width: 400px; margin: 0 auto; }
 
-        .lang-section { display: none; } /* Visi paslėpti */
-        .lang-section.active { display: block; } /* Tik aktyvus matomas */
+        .lang-section { display: none; opacity: 0; transition: opacity 0.5s ease; }
+        .lang-section.active { display: block; opacity: 1; }
     </style>
 </head>
 <body>
 
-    <div class="card">
+    <div class="container">
         <div class="check-circle">
-            <svg width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="#00ff87" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#00ff87" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
         </div>
 
-        <div id="lang-en" class="lang-section active"><h1>Thank You!</h1><p>Request received. We will be in touch shortly.</p></div>
-        <div id="lang-lt" class="lang-section"><h1>Ačiū!</h1><p>Užklausa gauta. Netrukus susisieksime.</p></div>
-        <div id="lang-de" class="lang-section"><h1>Danke!</h1><p>Anfrage erhalten. Wir melden uns in Kürze.</p></div>
-        <div id="lang-pl" class="lang-section"><h1>Dziękujemy!</h1><p>Zapytanie otrzymane. Wkrótce się skontaktujemy.</p></div>
-        <div id="lang-ru" class="lang-section"><h1>Спасибо!</h1><p>Запрос получен. Скоро свяжемся с вами.</p></div>
+        <div id="lang-en" class="lang-section active"><h1>Thank You!</h1><p>Your request has been received. We will contact you shortly.</p></div>
+        <div id="lang-lt" class="lang-section"><h1>Ačiū!</h1><p>Gavome jūsų užklausą. Netrukus susisieksime.</p></div>
+        <div id="lang-de" class="lang-section"><h1>Danke!</h1><p>Wir haben Ihre Anfrage erhalten. Wir melden uns in Kürze.</p></div>
+        <div id="lang-pl" class="lang-section"><h1>Dziękujemy!</h1><p>Otrzymaliśmy Twoje zapytanie. Wkrótce się skontaktujemy.</p></div>
+        <div id="lang-ru" class="lang-section"><h1>Спасибо!</h1><p>Ваш запрос получен. Скоро свяжемся с вами.</p></div>
     </div>
 
     <script>
         const params = new URLSearchParams(window.location.search);
         const lang = params.get('lang') || 'en';
         
-        // Pakeičiame aktyvią klasę
         document.querySelectorAll('.lang-section').forEach(el => el.classList.remove('active'));
         const activeLang = document.getElementById('lang-' + lang) || document.getElementById('lang-en');
         activeLang.classList.add('active');
 
-        // Nukreipimas po 4 sekundžių
         setTimeout(() => { window.location.href = "index.html"; }, 4000);
     </script>
 </body>
