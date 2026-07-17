@@ -2,28 +2,32 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Thank You | Stratego Trans</title>
-    <!-- Prijungiame jūsų stilius, kad dizainas išliktų toks pat -->
+    <title>Stratego Trans | Thank You</title>
+    <!-- Jūsų svetainės stiliai -->
     <link rel="stylesheet" href="assets/css/style.css">
     <style>
-        body { display: flex; align-items: center; justify-content: center; height: 100vh; background: #050608; color: white; text-align: center; }
-        .thank-you-box { padding: 40px; border: 1px solid #333; border-radius: 15px; max-width: 500px; }
-        h1 { color: var(--accent); }
+        body { background: #050608 !important; color: #fff !important; font-family: 'Inter', sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; }
+        .thank-you-box { background: rgba(255,255,255,0.05); padding: 50px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); text-align: center; max-width: 600px; }
+        h1 { color: #fff; font-size: 2.5em; margin-bottom: 20px; }
+        p { font-size: 1.2em; opacity: 0.8; margin-bottom: 30px; }
+        .btn-home { display: inline-block; padding: 15px 30px; background: #fff; color: #000; text-decoration: none; border-radius: 5px; font-weight: bold; }
         .lang-section { display: none; }
     </style>
 </head>
 <body>
     <div class="thank-you-box">
         <div id="lt" class="lang-section"><h1>Dėkojame!</h1><p>Jūsų užklausa gauta. Susisieksime netrukus.</p></div>
-        <div id="en" class="lang-section"><h1>Thank you!</h1><p>Your inquiry has been received. We will contact you shortly.</p></div>
-        <div id="ru" class="lang-section"><h1>Спасибо!</h1><p>Ваш запрос получен. Мы свяжемся с вами в ближайшее время.</p></div>
-        <div id="de" class="lang-section"><h1>Vielen Dank!</h1><p>Ihre Anfrage wurde empfangen. Wir werden uns in Kürze melden.</p></div>
-        <div id="pl" class="lang-section"><h1>Dziękujemy!</h1><p>Twoje zapytanie zostało odebrane. Skontaktujemy się wkrótce.</p></div>
-        <br><a href="index.html" style="color: var(--accent);">Grįžti į pagrindinį / Back to home</a>
+        <div id="en" class="lang-section"><h1>Thank you!</h1><p>Your inquiry has been received. Our team will contact you shortly.</p></div>
+        <div id="ru" class="lang-section"><h1>Спасибо!</h1><p>Ваш запрос получен. Наша команда свяжется с вами в ближайшее время.</p></div>
+        <div id="de" class="lang-section"><h1>Vielen Dank!</h1><p>Ihre Anfrage wurde empfangen. Unser Team wird sich in Kürze bei Ihnen melden.</p></div>
+        <div id="pl" class="lang-section"><h1>Dziękujemy!</h1><p>Twoje zapytanie zostało odebrane. Nasz zespół skontaktuje się z Tobą wkrótce.</p></div>
+        
+        <a href="index.html" class="btn-home">Back to Home</a>
     </div>
 
     <script>
-        const lang = new URLSearchParams(window.location.search).get('lang') || 'en';
+        const params = new URLSearchParams(window.location.search);
+        const lang = params.get('lang') || 'en';
         document.getElementById(lang).style.display = 'block';
     </script>
 </body>
