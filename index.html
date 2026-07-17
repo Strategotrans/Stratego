@@ -196,15 +196,19 @@
                 <h2 id="contact-title">Let's Move Forward</h2>
             </div>
             
-            <form action="https://api.web3forms.com/submit" method="POST" class="contact-form">
-                <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
-                
-                <input type="text" name="name" id="form-name" placeholder="Your Name" required>
-                <input type="email" name="email" id="form-email" placeholder="Your E-mail" required>
-                <textarea name="message" id="form-message" placeholder="Your Message" rows="5" required></textarea>
-                
-                <button type="submit" id="form-submit">SEND MESSAGE</button>
-            </form>
+            <<form action="https://api.web3forms.com/submit" method="POST" class="contact-form">
+    <!-- Jūsų raktas -->
+    <input type="hidden" name="access_key" value="7f057cee-d1fa-4f00-8242-bbabba4e6e4a">
+    
+    <!-- Paslėptas laukas apsaugai nuo robotų -->
+    <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+    
+    <input type="text" name="name" id="form-name" placeholder="Your Name" required>
+    <input type="email" name="email" id="form-email" placeholder="Your E-mail" required>
+    <textarea name="message" id="form-message" placeholder="Your Message" rows="5" required></textarea>
+    
+    <button type="submit" id="form-submit">SEND MESSAGE</button>
+</form>
 
             <div class="contact-info-box" style="margin-top: 40px; color: #fff;">
                 <h3 style="margin-bottom: 15px;">Stratego Trans Sp. z o.o.</h3>
