@@ -2,6 +2,95 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stratego Trans | Thank You</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;600&display=swap');
+        body { 
+            margin: 0; height: 100vh; display: flex; align-items: center; justify-content: center;
+            background: radial-gradient(circle at center, #1a1c22 0%, #050608 100%);
+            color: #fff; font-family: 'Inter', sans-serif; overflow: hidden;
+        }
+        .thank-you-box { 
+            background: rgba(255, 255, 255, 0.03); 
+            backdrop-filter: blur(20px);
+            padding: 60px; border-radius: 24px; text-align: center; 
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+            max-width: 450px;
+        }
+        .lang-section { display: none; }
+        .success-icon { margin-bottom: 25px; }
+        h1 { font-size: 2rem; margin-bottom: 15px; }
+        p { color: rgba(255,255,255,0.6); margin-bottom: 30px; }
+        .btn-home { 
+            padding: 12px 30px; border: 1px solid #fff; border-radius: 50px; 
+            text-decoration: none; color: #fff; font-size: 0.9rem; transition: 0.3s;
+        }
+        .btn-home:hover { background: #fff; color: #000; }
+    </style>
+</head>
+<body>
+
+    <div class="thank-you-box">
+        <div class="success-icon">
+            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#00ff87" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+        </div>
+
+        <!-- EN -->
+        <div id="lang-en" class="lang-section">
+            <h1>Thank You!</h1>
+            <p>We have received your request. Our team will contact you shortly.</p>
+        </div>
+        <!-- LT -->
+        <div id="lang-lt" class="lang-section">
+            <h1>Ačiū!</h1>
+            <p>Gavome jūsų užklausą. Mūsų komanda netrukus su jumis susisieks.</p>
+        </div>
+        <!-- DE -->
+        <div id="lang-de" class="lang-section">
+            <h1>Danke!</h1>
+            <p>Wir haben Ihre Anfrage erhalten. Unser Team wird sich in Kürze bei Ihnen melden.</p>
+        </div>
+        <!-- PL -->
+        <div id="lang-pl" class="lang-section">
+            <h1>Dziękujemy!</h1>
+            <p>Otrzymaliśmy Twoje zapytanie. Nasz zespół wkrótce się z Tobą skontaktuje.</p>
+        </div>
+        <!-- RU -->
+        <div id="lang-ru" class="lang-section">
+            <h1>Спасибо!</h1>
+            <p>Мы получили ваш запрос. Наша команда свяжется с вами в ближайшее время.</p>
+        </div>
+
+        <a href="index.html" class="btn-home" id="btn-text">Back to Home</a>
+    </div>
+
+    <script>
+        // 1. Kalbos logika
+        const params = new URLSearchParams(window.location.search);
+        const lang = params.get('lang') || 'en';
+        
+        // Mygtuko tekstai pagal kalbą
+        const btnTexts = { en: 'Back to Home', lt: 'Grįžti į pradžią', de: 'Zurück zur Startseite', pl: 'Powrót do strony', ru: 'На главную' };
+        document.getElementById('btn-text').innerText = btnTexts[lang] || btnTexts['en'];
+        
+        // Rodyti reikiamą sekciją
+        const target = document.getElementById('lang-' + lang);
+        if(target) target.style.display = 'block';
+        else document.getElementById('lang-en').style.display = 'block';
+
+        // 2. Automatinis nukreipimas po 5 sek
+        setTimeout(() => { window.location.href = "index.html"; }, 5000);
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
     <title>Stratego Trans - Thank You</title>
     <style>
         body { background: #050608; color: #fff; font-family: 'Inter', sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; }
