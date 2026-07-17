@@ -2,17 +2,43 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thank You | Stratego Trans</title>
     <style>
-        body { background: #050608; color: #fff; font-family: sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; }
-        .thank-you-box { background: rgba(255,255,255,0.05); padding: 40px; border-radius: 15px; text-align: center; border: 1px solid rgba(255,255,255,0.1); }
-        .lang-section { display: none; }
-        a { color: #fff; text-decoration: underline; margin-top: 20px; display: inline-block; }
+        /* CSS stiliai */
+        body { 
+            background: #050608; 
+            color: #fff; 
+            font-family: sans-serif; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            height: 100vh; 
+            margin: 0; 
+        }
+        .thank-you-box { 
+            background: rgba(255,255,255,0.05); 
+            padding: 40px; 
+            border-radius: 15px; 
+            text-align: center; 
+            border: 1px solid rgba(255,255,255,0.1); 
+        }
+        /* Ši taisyklė su !important priverstinai paslepia visus tekstus */
+        .lang-section { 
+            display: none !important; 
+        }
+        a { 
+            color: #fff; 
+            text-decoration: underline; 
+            margin-top: 20px; 
+            display: inline-block; 
+        }
     </style>
 </head>
 <body>
 
     <div class="thank-you-box">
+        <!-- Kalbų blokai -->
         <div id="lt" class="lang-section"><h1>Dėkojame!</h1><p>Jūsų užklausa gauta. Susisieksime netrukus.</p></div>
         <div id="en" class="lang-section"><h1>Thank you!</h1><p>Your inquiry has been received. We will contact you shortly.</p></div>
         <div id="de" class="lang-section"><h1>Vielen Dank!</h1><p>Ihre Anfrage wurde empfangen. Wir melden uns in Kürze bei Ihnen.</p></div>
@@ -23,61 +49,21 @@
     </div>
 
     <script>
-        // Šis skriptas nuskaito kalbą iš adreso (pvz., ?lang=de) ir parodo tinkamą tekstą
-        const params = new URLSearchParams(window.location.search);
-        const lang = params.get('lang') || 'en';
-        
-        const sections = document.querySelectorAll('.lang-section');
-        sections.forEach(s => s.style.display = 'none');
-        
-        const target = document.getElementById(lang);
-        if (target) {
-            target.style.display = 'block';
-        } else {
-            document.getElementById('en').style.display = 'block';
-        }
+        // Skriptas: suranda kalbą adreso juostoje ir parodo tik atitinkamą bloką
+        window.addEventListener('DOMContentLoaded', (event) => {
+            const params = new URLSearchParams(window.location.search);
+            const lang = params.get('lang') || 'en';
+            
+            // Pašaliname paslėpimą tik tam vienam, kurį norime rodyti
+            const target = document.getElementById(lang);
+            if (target) {
+                target.style.display = 'block !important'.replace(' !important', ''); // CSS techninis triukas
+                target.style.setProperty('display', 'block', 'important');
+            } else {
+                const fallback = document.getElementById('en');
+                if (fallback) fallback.style.setProperty('display', 'block', 'important');
+            }
+        });
     </script>
-</body>
-</html><!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Stratego Trans | Thank You</title>
-    <!-- Jūsų svetainės stiliai -->
-    <link rel="stylesheet" href="assets/css/style.css">
-    <style>
-        body { background: #050608 !important; color: #fff !important; font-family: 'Inter', sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; }
-        .thank-you-box { background: rgba(255,255,255,0.05); padding: 50px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); text-align: center; max-width: 600px; }
-        h1 { color: #fff; font-size: 2.5em; margin-bottom: 20px; }
-        p { font-size: 1.2em; opacity: 0.8; margin-bottom: 30px; }
-        .btn-home { display: inline-block; padding: 15px 30px; background: #fff; color: #000; text-decoration: none; border-radius: 5px; font-weight: bold; }
-        .lang-section { display: none; }
-    </style>
-</head>
-<body>
-    <div class="thank-you-box">
-        <div id="lt" class="lang-section"><h1>Dėkojame!</h1><p>Jūsų užklausa gauta. Susisieksime netrukus.</p></div>
-        <div id="en" class="lang-section"><h1>Thank you!</h1><p>Your inquiry has been received. Our team will contact you shortly.</p></div>
-        <div id="ru" class="lang-section"><h1>Спасибо!</h1><p>Ваш запрос получен. Наша команда свяжется с вами в ближайшее время.</p></div>
-        <div id="de" class="lang-section"><h1>Vielen Dank!</h1><p>Ihre Anfrage wurde empfangen. Unser Team wird sich in Kürze bei Ihnen melden.</p></div>
-        <div id="pl" class="lang-section"><h1>Dziękujemy!</h1><p>Twoje zapytanie zostało odebrane. Nasz zespół skontaktuje się z Tobą wkrótce.</p></div>
-        
-        <a href="index.html" class="btn-home">Back to Home</a>
-    </div>
-
-    <script>
-    // Paimame tik kalbos kodą (pvz., 'lt', 'de', 'pl')
-    const urlParams = new URLSearchParams(window.location.search);
-    const lang = urlParams.get('lang') || 'en'; // jei nėra kalbos, rodo EN
-    
-    // Paslepiame visus ir parodome tik reikiamą
-    document.querySelectorAll('.lang-section').forEach(el => el.style.display = 'none');
-    const activeSection = document.getElementById(lang);
-    if (activeSection) {
-        activeSection.style.display = 'block';
-    } else {
-        document.getElementById('en').style.display = 'block';
-    }
-</script>
 </body>
 </html>
