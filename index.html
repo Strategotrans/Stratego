@@ -237,13 +237,22 @@
 <script src="assets/js/app.js"></script>
 
     <script>
-    document.querySelector('.contact-form').addEventListener('submit', function() {
-        // Paimame kalbą iš HTML žymos (tikiuosi, kad jūsų app.js ją ten pakeičia)
-        const lang = document.documentElement.lang || 'en';
-        // Pridedame kalbą prie adreso
-        const redirectUrl = "https://strategotrans.eu/aciu.html?lang=" + lang;
-        document.getElementById('redirect-input').value = redirectUrl;
-    });
-</script>
+        function updateRedirect() {
+            const currentLang = localStorage.getItem('preferredLang') || 'en';
+            const redirectInput = document.getElementById('redirect-input');
+            if (redirectInput) {
+                redirectInput.value = "https://strategotrans.eu/aciu.html?lang=" + currentLang;
+            }
+        }
+
+        // Jei jūsų mygtukai neturi klasės 'lang-btn', 
+        // pasitikrinkite, kokią klasę turi jūsų kalbų keitimo elementai.
+        // Jei tai yra <a> žymos meniu, galite naudoti:
+        document.querySelectorAll('.menu-card').forEach(btn => {
+            btn.addEventListener('click', updateRedirect);
+        });
+
+        window.addEventListener('load', updateRedirect);
+    </script>
 </body>
 </html>
