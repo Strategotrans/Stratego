@@ -111,9 +111,10 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('preferredLang', lang);
     };
 
+    // Kalbos nustatymas pagal URL arba saugomą reikšmę
     const urlParams = new URLSearchParams(window.location.search);
-const savedLang = urlParams.get('lang') || localStorage.getItem('preferredLang') || 'en';
-changeLang(savedLang);
+    const savedLang = urlParams.get('lang') || localStorage.getItem('preferredLang') || 'en';
+    changeLang(savedLang);
 
     const menuBtn = document.getElementById('menuBtn');
     const menuOverlay = document.getElementById('menuOverlay');
@@ -159,7 +160,7 @@ changeLang(savedLang);
                 }
             }
         });
-    }; // ŠITAS SKLIAUSTELIS BUVO PRALEISTAS
+    };
 
     window.addEventListener('scroll', handleScrollAnimation);
     setTimeout(handleScrollAnimation, 150);
