@@ -108,7 +108,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 else { el.innerHTML = langData[id]; }
             }
         });
+        
         localStorage.setItem('preferredLang', lang);
+
+        // ŠI EILUTĖ ATNAUJINS FORMOS NUORODĄ IŠKART PO KALBOS PASPAUDIMO:
+        if(typeof updateRedirect === 'function') updateRedirect();
     };
 
     // Kalbos nustatymas pagal URL arba saugomą reikšmę
