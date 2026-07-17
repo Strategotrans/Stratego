@@ -209,7 +209,8 @@
 
 <script>
     function updateRedirect() {
-        const currentLang = document.documentElement.lang || 'en';
+        // Pirmiausia imam iš localStorage (kur saugo app.js), jei nėra – fallback į 'en'
+        const currentLang = localStorage.getItem('preferredLang') || 'en';
         document.getElementById('redirect-input').value = "https://strategotrans.eu/aciu.html?lang=" + currentLang;
     }
 </script>
