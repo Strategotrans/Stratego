@@ -3,42 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thank You | Stratego Trans</title>
+    <title>Thank You</title>
     <style>
-        /* CSS stiliai */
+        /* Pirminis paslėpimas: kol skriptas nesuveikė, nerodome nieko */
+        .lang-section { display: none !important; }
+        
         body { 
-            background: #050608; 
-            color: #fff; 
-            font-family: sans-serif; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            height: 100vh; 
-            margin: 0; 
+            background: #050608; color: #fff; font-family: sans-serif; 
+            display: flex; align-items: center; justify-content: center; 
+            height: 100vh; margin: 0; 
         }
         .thank-you-box { 
-            background: rgba(255,255,255,0.05); 
-            padding: 40px; 
-            border-radius: 15px; 
-            text-align: center; 
-            border: 1px solid rgba(255,255,255,0.1); 
+            background: rgba(255,255,255,0.05); padding: 40px; 
+            border-radius: 15px; text-align: center; border: 1px solid rgba(255,255,255,0.1); 
         }
-        /* Ši taisyklė su !important priverstinai paslepia visus tekstus */
-        .lang-section { 
-            display: none !important; 
-        }
-        a { 
-            color: #fff; 
-            text-decoration: underline; 
-            margin-top: 20px; 
-            display: inline-block; 
-        }
+        a { color: #fff; text-decoration: underline; margin-top: 20px; display: inline-block; }
     </style>
 </head>
 <body>
 
     <div class="thank-you-box">
-        <!-- Kalbų blokai -->
+        <!-- Visi tekstai turi būti čia, savo div'uose -->
         <div id="lt" class="lang-section"><h1>Dėkojame!</h1><p>Jūsų užklausa gauta. Susisieksime netrukus.</p></div>
         <div id="en" class="lang-section"><h1>Thank you!</h1><p>Your inquiry has been received. We will contact you shortly.</p></div>
         <div id="de" class="lang-section"><h1>Vielen Dank!</h1><p>Ihre Anfrage wurde empfangen. Wir melden uns in Kürze bei Ihnen.</p></div>
@@ -49,21 +34,16 @@
     </div>
 
     <script>
-        // Skriptas: suranda kalbą adreso juostoje ir parodo tik atitinkamą bloką
-        window.addEventListener('DOMContentLoaded', (event) => {
+        // Šis skriptas iškart nusprendžia, ką rodyti
+        (function() {
             const params = new URLSearchParams(window.location.search);
             const lang = params.get('lang') || 'en';
+            const target = document.getElementById(lang) || document.getElementById('en');
             
-            // Pašaliname paslėpimą tik tam vienam, kurį norime rodyti
-            const target = document.getElementById(lang);
             if (target) {
-                target.style.display = 'block !important'.replace(' !important', ''); // CSS techninis triukas
-                target.style.setProperty('display', 'block', 'important');
-            } else {
-                const fallback = document.getElementById('en');
-                if (fallback) fallback.style.setProperty('display', 'block', 'important');
+                target.style.display = 'block';
             }
-        });
+        })();
     </script>
 </body>
 </html>
