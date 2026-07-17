@@ -197,17 +197,19 @@
             </div>
             
             <form action="https://api.web3forms.com/submit" method="POST" class="contact-form">
+    <!-- Įklijuokite savo raktą čia tarp kabučių, be jokių tarpų -->
     <input type="hidden" name="access_key" value="7f057cee-d1fa-4f00-8242-bbabba4e6e4a">
+    
     <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
     
-    <!-- Štai čia naujovė: mes dinamiškai pridėsime kalbą ir laiko žymą -->
+    <!-- Išimkite visus kitus papildomus scriptus iš formos vidaus, palikite tik laukus -->
     <input type="hidden" name="redirect" id="redirect-input" value="https://strategotrans.eu/aciu.html?lang=en">
     
-    <input type="text" name="name" id="form-name" placeholder="Your Name" required>
-    <input type="email" name="email" id="form-email" placeholder="Your E-mail" required>
-    <textarea name="message" id="form-message" placeholder="Your Message" rows="5" required></textarea>
+    <input type="text" name="name" placeholder="Your Name" required>
+    <input type="email" name="email" placeholder="Your E-mail" required>
+    <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
     
-    <button type="submit" id="form-submit" onclick="setRedirect()">SEND MESSAGE</button>
+    <button type="submit">SEND MESSAGE</button>
 </form>
 
 <script>
