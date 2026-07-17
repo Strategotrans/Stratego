@@ -198,10 +198,7 @@
             
             <form action="https://api.web3forms.com/submit" method="POST" class="contact-form" onsubmit="updateRedirect()">
     <input type="hidden" name="access_key" value="7f057cee-d1fa-4f00-8242-bbabba4e6e4a">
-    <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
-    
-    <!-- Šis laukas bus automatiškai atnaujintas prieš pat išsiunčiant -->
-    <input type="hidden" name="redirect" id="redirect-input" value="https://strategotrans.eu/aciu.html">
+    <input type="hidden" name="redirect" id="redirect-input" value="https://strategotrans.eu/aciu.html?lang=en">
     
     <input type="text" name="name" id="form-name" placeholder="Name" required>
     <input type="email" name="email" id="form-email" placeholder="E-mail" required>
@@ -212,10 +209,8 @@
 
 <script>
     function updateRedirect() {
-        // Nuskaitome dabartinę kalbą iš HTML elemento
-        const lang = document.documentElement.lang || 'en';
-        // Pridedame kalbą prie nuorodos
-        document.getElementById('redirect-input').value = "https://strategotrans.eu/aciu.html?lang=" + lang;
+        const currentLang = document.documentElement.lang || 'en';
+        document.getElementById('redirect-input').value = "https://strategotrans.eu/aciu.html?lang=" + currentLang;
     }
 </script>
 
