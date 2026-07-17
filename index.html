@@ -197,27 +197,26 @@
             </div>
             
             <form action="https://api.web3forms.com/submit" method="POST" class="contact-form">
-    <input type="hidden" name="access_key" value="7f057cee-d1fa-4f00-8242-bbabba4e6e4a">
+    <input type="hidden" name="access_key" value="7f057cee-d1fa-4f00-8242-bbabba4e6e4aa">
     <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
     
-    <!-- Šis laukas bus atnaujintas automatiškai prieš pat siunčiant -->
+    <!-- Štai čia naujovė: mes dinamiškai pridėsime kalbą ir laiko žymą -->
     <input type="hidden" name="redirect" id="redirect-input" value="https://strategotrans.eu/aciu.html?lang=en">
     
     <input type="text" name="name" id="form-name" placeholder="Your Name" required>
     <input type="email" name="email" id="form-email" placeholder="Your E-mail" required>
     <textarea name="message" id="form-message" placeholder="Your Message" rows="5" required></textarea>
     
-    <button type="submit" id="form-submit" onclick="updateLang()">SEND MESSAGE</button>
+    <button type="submit" id="form-submit" onclick="setRedirect()">SEND MESSAGE</button>
 </form>
 
 <script>
-    function updateLang() {
-        // Nuskaitome kalbą iš vietos, kur ją saugo jūsų app.js (dažniausiai tai būna localStorage arba rodoma kalba)
-        // Jei jūsų meniu naudojamas tekstas ar klasės, šis kodas nustatys teisingą kalbą:
-        const langIcons = document.querySelector('.menu-languages-immersive');
-        // Čia pritaikysime logiką pagal jūsų svetainės veikimą
-        const currentLang = localStorage.getItem('lang') || 'en'; // Spėjimas pagal standartą
-        document.getElementById('redirect-input').value = "https://strategotrans.eu/aciu.html?lang=" + currentLang;
+    function setRedirect() {
+        // Paimame esamą kalbą iš HTML lang atributo
+        const lang = document.documentElement.lang || 'en';
+        // Pridedame unikalų skaičių (timestamp), kad naršyklė nekrautų senos versijos iš Service Worker
+        const timestamp = new Date().getTime();
+        document.getElementById('redirect-input').value = `https://strategotrans.eu/aciu.html?lang=${lang}&v=${timestamp}`;
     }
 </script>
 
