@@ -2,44 +2,56 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thank You</title>
+    <title>Stratego Trans - Thank You</title>
     <style>
-    /* Paslepiame viską pagal nutylėjimą, kol skriptas nesuveikė */
-    .lang-section { display: none !important; }
-    
-    body { background: #050608; color: #fff; font-family: sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; }
-    .thank-you-box { background: rgba(255,255,255,0.05); padding: 40px; border-radius: 15px; text-align: center; border: 1px solid rgba(255,255,255,0.1); }
-    a { color: #fff; text-decoration: underline; margin-top: 20px; display: inline-block; }
-</style>
+        body { background: #050608; color: #fff; font-family: 'Inter', sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; }
+        .thank-you-box { background: rgba(255,255,255,0.05); padding: 40px; border-radius: 15px; text-align: center; border: 1px solid rgba(255,255,255,0.1); }
+        .lang-section { display: none; }
+        a { color: #00ff87; text-decoration: none; margin-top: 20px; display: inline-block; font-weight: 700; }
+    </style>
 </head>
 <body>
 
     <div class="thank-you-box">
-        <!-- Visi tekstai turi būti čia, savo div'uose -->
-        <div id="lt" class="lang-section"><h1>Dėkojame!</h1><p>Jūsų užklausa gauta. Susisieksime netrukus.</p></div>
-        <div id="en" class="lang-section"><h1>Thank you!</h1><p>Your inquiry has been received. We will contact you shortly.</p></div>
-        <div id="de" class="lang-section"><h1>Vielen Dank!</h1><p>Ihre Anfrage wurde empfangen. Wir melden uns in Kürze bei Ihnen.</p></div>
-        <div id="pl" class="lang-section"><h1>Dziękujemy!</h1><p>Twoje zapytanie zostało odebrane. Skontaktujemy się wkrótce.</p></div>
-        <div id="ru" class="lang-section"><h1>Спасибо!</h1><p>Ваш запрос получен. Мы свяжемся с вами в ближайшее время.</p></div>
-        
-        <a href="index.html">Grįžti į pagrindinį / Back to home</a>
+        <div id="lang-en" class="lang-section">
+            <h1>Thank You!</h1>
+            <p>We have received your request and will contact you shortly.</p>
+            <a href="index.html">Back to Home</a>
+        </div>
+        <div id="lang-lt" class="lang-section">
+            <h1>Ačiū!</h1>
+            <p>Gavome jūsų užklausą ir netrukus su jumis susisieksime.</p>
+            <a href="index.html">Grįžti į pradžią</a>
+        </div>
+        <div id="lang-de" class="lang-section">
+            <h1>Danke!</h1>
+            <p>Wir haben Ihre Anfrage erhalten und werden uns in Kürze bei Ihnen melden.</p>
+            <a href="index.html">Zurück zur Startseite</a>
+        </div>
+        <div id="lang-pl" class="lang-section">
+            <h1>Dziękujemy!</h1>
+            <p>Otrzymaliśmy Twoje zapytanie i wkrótce się z Tobą skontaktujemy.</p>
+            <a href="index.html">Powrót do strony głównej</a>
+        </div>
+        <div id="lang-ru" class="lang-section">
+            <h1>Спасибо!</h1>
+            <p>Мы получили ваш запрос и скоро свяжемся с вами.</p>
+            <a href="index.html">Вернуться на главную</a>
+        </div>
     </div>
 
     <script>
-    const params = new URLSearchParams(window.location.search);
-    const lang = params.get('lang') || 'en';
-    
-    // Paslepiame visus lang blokus
-    document.querySelectorAll('.lang-section').forEach(el => el.style.display = 'none');
-    
-    // Parodome reikiamą
-    const target = document.getElementById('lang-' + lang);
-    if(target) {
-        target.style.display = 'block';
-    } else {
-        document.getElementById('lang-en').style.display = 'block'; // Fallback
-    }
-</script>
+        const params = new URLSearchParams(window.location.search);
+        const lang = params.get('lang') || 'en';
+        
+        document.querySelectorAll('.lang-section').forEach(el => el.style.display = 'none');
+        
+        const target = document.getElementById('lang-' + lang);
+        if(target) {
+            target.style.display = 'block';
+        } else {
+            document.getElementById('lang-en').style.display = 'block';
+        }
+    </script>
 </body>
 </html>
