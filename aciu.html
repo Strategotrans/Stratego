@@ -34,12 +34,24 @@
     </div>
 
     <script>
-        // Šis skriptas iškart nusprendžia, ką rodyti
         (function() {
+            // 1. Gauname kalbos parametrą iš adreso (pvz., ?lang=pl)
             const params = new URLSearchParams(window.location.search);
-            const lang = params.get('lang') || 'en';
-            const target = document.getElementById(lang) || document.getElementById('en');
+            let lang = params.get('lang');
             
+            // 2. Jei lang nėra arba jis nėra tarp galimų, nustatome numatytąjį (pvz., 'en')
+            const supportedLangs = ['lt', 'en', 'de', 'pl', 'ru'];
+            if (!lang || !supportedLangs.includes(lang)) {
+                lang = 'en';
+            }
+            
+            // 3. Pirmiausia visus paslepiame
+            document.querySelectorAll('.lang-section').forEach(el => {
+                el.style.display = 'none';
+            });
+            
+            // 4. Parodome tik tą, kuris atitinka kalbą
+            const target = document.getElementById(lang);
             if (target) {
                 target.style.display = 'block';
             }
