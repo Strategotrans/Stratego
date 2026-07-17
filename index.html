@@ -214,10 +214,11 @@
 </form>
 
 <script>
-    // Šis kodas paima dabartinę kalbą iš HTML žymos (lang="en") ir prideda ją prie nuorodos
-    document.addEventListener("DOMContentLoaded", function() {
-        const currentLang = document.documentElement.lang || 'lt';
-        document.getElementById('redirect-input').value = "https://strategotrans.eu/aciu.html?lang=" + currentLang;
+    document.querySelector('.contact-form').addEventListener('submit', function() {
+        // Paimame kalbą iš HTML tag'o
+        const lang = document.documentElement.lang || 'en';
+        // Nustatome nukreipimo nuorodą
+        document.getElementById('redirect-input').value = "https://strategotrans.eu/aciu.html?lang=" + lang;
     });
 </script>
 
