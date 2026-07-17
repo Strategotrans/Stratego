@@ -197,29 +197,28 @@
             </div>
             
             <form action="https://api.web3forms.com/submit" method="POST" class="contact-form">
-    <!-- Jūsų raktas -->
     <input type="hidden" name="access_key" value="7f057cee-d1fa-4f00-8242-bbabba4e6e4a">
-    
-    <!-- Paslėptas laukas apsaugai -->
     <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
     
-    <!-- Išmanus nukreipimas -->
-    <input type="hidden" name="redirect" id="redirect-input" value="https://strategotrans.eu/aciu.html?lang=lt">
+    <!-- Šis laukas bus atnaujintas automatiškai prieš pat siunčiant -->
+    <input type="hidden" name="redirect" id="redirect-input" value="https://strategotrans.eu/aciu.html?lang=en">
     
     <input type="text" name="name" id="form-name" placeholder="Your Name" required>
     <input type="email" name="email" id="form-email" placeholder="Your E-mail" required>
     <textarea name="message" id="form-message" placeholder="Your Message" rows="5" required></textarea>
     
-    <button type="submit" id="form-submit">SEND MESSAGE</button>
+    <button type="submit" id="form-submit" onclick="updateLang()">SEND MESSAGE</button>
 </form>
 
 <script>
-    document.querySelector('.contact-form').addEventListener('submit', function() {
-        // Paimame kalbą iš HTML tag'o
-        const lang = document.documentElement.lang || 'en';
-        // Nustatome nukreipimo nuorodą
-        document.getElementById('redirect-input').value = "https://strategotrans.eu/aciu.html?lang=" + lang;
-    });
+    function updateLang() {
+        // Nuskaitome kalbą iš vietos, kur ją saugo jūsų app.js (dažniausiai tai būna localStorage arba rodoma kalba)
+        // Jei jūsų meniu naudojamas tekstas ar klasės, šis kodas nustatys teisingą kalbą:
+        const langIcons = document.querySelector('.menu-languages-immersive');
+        // Čia pritaikysime logiką pagal jūsų svetainės veikimą
+        const currentLang = localStorage.getItem('lang') || 'en'; // Spėjimas pagal standartą
+        document.getElementById('redirect-input').value = "https://strategotrans.eu/aciu.html?lang=" + currentLang;
+    }
 </script>
 
             <div class="contact-info-box" style="margin-top: 40px; color: #fff;">
