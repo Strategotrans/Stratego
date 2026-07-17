@@ -203,7 +203,7 @@
     <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
     
     <!-- Išimkite visus kitus papildomus scriptus iš formos vidaus, palikite tik laukus -->
-    <input type="hidden" name="redirect" id="redirect-input" value="https://strategotrans.eu/aciu.html?lang=en">
+    <input type="hidden" name="redirect" id="redirect-input" value="https://strategotrans.eu/aciu.html">
     
     <input type="text" name="name" placeholder="Your Name" required>
     <input type="email" name="email" placeholder="Your E-mail" required>
@@ -242,5 +242,15 @@
 
 <!-- Štai čia prijungiame skriptą, kuris valdo vertimus -->
 <script src="assets/js/app.js"></script>
+
+    <script>
+    document.querySelector('.contact-form').addEventListener('submit', function() {
+        // Paimame kalbą iš HTML žymos (tikiuosi, kad jūsų app.js ją ten pakeičia)
+        const lang = document.documentElement.lang || 'en';
+        // Pridedame kalbą prie adreso
+        const redirectUrl = "https://strategotrans.eu/aciu.html?lang=" + lang;
+        document.getElementById('redirect-input').value = redirectUrl;
+    });
+</script>
 </body>
 </html>
