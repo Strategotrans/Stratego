@@ -26,9 +26,9 @@
     </div>
 
     <script>
-    // Nuskaitome 'lang' parametrą ir ignoruojame viską po jo (v=...)
-    const params = new URLSearchParams(window.location.search);
-    const lang = params.get('lang') || 'en';
+    // Paimame tik kalbos kodą (pvz., 'lt', 'de', 'pl')
+    const urlParams = new URLSearchParams(window.location.search);
+    const lang = urlParams.get('lang') || 'en'; // jei nėra kalbos, rodo EN
     
     // Paslepiame visus ir parodome tik reikiamą
     document.querySelectorAll('.lang-section').forEach(el => el.style.display = 'none');
@@ -36,7 +36,7 @@
     if (activeSection) {
         activeSection.style.display = 'block';
     } else {
-        document.getElementById('en').style.display = 'block'; // Atsarginis variantas
+        document.getElementById('en').style.display = 'block';
     }
 </script>
 </body>
