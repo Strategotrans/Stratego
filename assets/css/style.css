@@ -108,23 +108,36 @@ img {
     overflow: hidden;
 }
 
-.hero-video {
+/* Naujas konteineris YouTube video įterpimui */
+.video-container {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    width: 100vw;
+    height: 100vh;
+    min-width: 100%;
+    min-height: 100%;
     transform: translate(-50%, -50%);
     z-index: 1;
-    filter: brightness(0.35) contrast(1.05);
+    overflow: hidden;
+    pointer-events: none; /* Kad video būtų neliečiamas */
+}
+
+/* YouTube iframe stilius, kad jis atrodytų kaip fonas */
+.video-container iframe {
+    width: 100vw;
+    height: 56.25vw; /* Išlaiko 16:9 proporciją */
+    min-height: 100vh;
+    min-width: 177.77vh;
+    filter: brightness(0.35) contrast(1.05); /* Jūsų originalus vizualinis filtras */
+    pointer-events: none;
 }
 
 .hero-overlay {
     position: absolute;
     inset: 0;
     background: linear-gradient(to bottom, rgba(5,6,8,0.1) 0%, var(--bg-dark) 98%);
-    z-index: 2;
+    z-index: 2; /* Išlaikome overlay virš video */
 }
 
 /* ==========================================
