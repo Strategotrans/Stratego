@@ -96,14 +96,10 @@ img {
     }
 }
 
-/* ==========================================
-   VIDEO HERO SEKCIJA (TEISINGAS YOUTUBE BŪDAS)
-========================================== */
 .hero {
     position: relative;
     width: 100%;
     height: 100vh;
-    display: block; /* Pakeista į block, kad būtų laisva erdvė */
     overflow: hidden;
 }
 
@@ -128,6 +124,8 @@ img {
     transform: translate(-50%, -50%);
     filter: brightness(0.35) contrast(1.05);
     pointer-events: none;
+    /* Pridėta, kad nebandytų rodyti savo rėmų */
+    border: none;
 }
 
 .hero-overlay {
@@ -144,7 +142,6 @@ img {
     z-index: 10;
     width: min(1000px, 90%);
     margin-left: 8%;
-    /* Čia paliekame jūsų originalų stilių, nieko nekeičiame */
 }
 
 /* ==========================================
