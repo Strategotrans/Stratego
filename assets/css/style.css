@@ -96,8 +96,8 @@ img {
     }
 }
 
-/* ==========================================
-   VIDEO HERO SEKCIJA
+* ==========================================
+   VIDEO HERO SEKCIJA - PATAISYTA
 ========================================== */
 .hero {
     position: relative;
@@ -108,36 +108,41 @@ img {
     overflow: hidden;
 }
 
-/* Naujas konteineris YouTube video įterpimui */
 .video-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.video-container iframe {
+    width: 100vw;
+    height: 56.25vw; /* 16:9 santykis */
+    min-height: 100vh;
+    min-width: 177.77vh;
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 100vw;
-    height: 100vh;
-    min-width: 100%;
-    min-height: 100%;
     transform: translate(-50%, -50%);
-    z-index: 1;
-    overflow: hidden;
-    pointer-events: none; /* Kad video būtų neliečiamas */
-}
-
-/* YouTube iframe stilius, kad jis atrodytų kaip fonas */
-.video-container iframe {
-    width: 100vw;
-    height: 56.25vw; /* Išlaiko 16:9 proporciją */
-    min-height: 100vh;
-    min-width: 177.77vh;
-    filter: brightness(0.35) contrast(1.05); /* Jūsų originalus vizualinis filtras */
+    filter: brightness(0.35) contrast(1.05);
     pointer-events: none;
 }
 
 .hero-overlay {
     position: absolute;
     inset: 0;
+    z-index: 2; /* Overlay eina virš video */
     background: linear-gradient(to bottom, rgba(5,6,8,0.1) 0%, var(--bg-dark) 98%);
-    z-index: 2; /* Išlaikome overlay virš video */
+}
+
+.hero-content {
+    position: relative;
+    z-index: 3; /* Tekstas eina virš visko */
+    width: min(1000px, 90%);
+    margin-left: 8%;
 }
 
 /* ==========================================
