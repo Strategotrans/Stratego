@@ -767,13 +767,6 @@ button {
     will-change: transform, opacity; /* Optimizacija sklandumui */
 }
 
-/* Priverstinis nuotraukų rodymas */
-.services-visual {
-    background-image: url('https://placehold.co/600x400/1a1c22/white?text=Loading') !important; /* Laikinas placeholderis, jei JS neveikia */
-    background-size: cover !important;
-    background-position: center !important;
-}
-
 /* Galerijos elementų sutvarkymas mobiliajame */
 @media (max-width: 768px) {
     .gallery-item {
