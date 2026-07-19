@@ -1,171 +1,788 @@
 /* ==================================================
-   STRATEGO TRANS — APP LOGIC (2026 EDITION)
+   STRATEGO TRANS — ULTRA PREMIUM STUDIO EDITION
 ================================================== */
 
-if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
-window.scrollTo(0, 0);
+:root {
+    --bg-dark: #050608;
+    --bg-card: #0c0e12;
+    --border-light: rgba(255, 255, 255, 0.05);
+    --text-main: #ffffff;
+    --text-muted: #7e8695;
+    --accent: #00ff87;
+    --transition-cubic: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
 
-document.addEventListener('DOMContentLoaded', () => {
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg-dark);
+    color: var(--text-main);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+.container {
+    width: min(1200px, 90%);
+    margin: auto;
+}
+
+/* ==========================================
+   ANIMACIJOS (INITIAL & SCROLL REVEAL)
+========================================== */
+.animate-fade-in {
+    opacity: 0;
+    animation: fadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: revealUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 0.2s;
+}
+
+.reveal-delay-1 {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: revealUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 0.1s;
+}
+
+.reveal-delay-2 {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: revealUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 0.4s;
+}
+
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: var(--transition-cubic);
+}
+
+.scroll-reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
+@keyframes revealUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==========================================
+   VIDEO HERO SEKCIJA
+========================================== */
+.hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.hero-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    filter: brightness(0.35) contrast(1.05);
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(5,6,8,0.1) 0%, var(--bg-dark) 98%);
+    z-index: 2;
+}
+
+/* ==========================================
+   HEADER & HAMBURGER
+========================================== */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10001;
+    padding: 45px 60px;
+    pointer-events: none;
+}
+
+.header-inner {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.menu-btn {
+    width: 32px;
+    height: 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    z-index: 10002;
+    pointer-events: auto;
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.menu-btn span {
+    width: 100%;
+    height: 2px;
+    background: var(--text-main);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s, width 0.3s;
+}
+
+.menu-btn:hover span {
+    background: var(--accent) !important;
+}
+
+.menu-btn:hover span:nth-child(2) { 
+    width: 70%;
+}
+
+.menu-btn:active {
+    transform: scale(0.85) rotate(5deg);
+}
+
+.menu-btn.active span {
+    background: var(--text-main);
+}
+.menu-btn.active:hover span {
+    background: var(--accent) !important;
+}
+.menu-btn.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+.menu-btn.active span:nth-child(2) { opacity: 0; width: 0; }
+.menu-btn.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+/* ==========================================
+   ASYMMETRIC FLOATING CARDS MENIU
+========================================== */
+.menu-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(5, 6, 8, 0.4);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.6s ease;
+    z-index: 9998;
+}
+
+.menu-backdrop.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.menu-overlay {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100vh;
+    background: #050608;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.6s ease, visibility 0.6s;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.menu-bg-container {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.menu-bg-slide {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.42) contrast(1.05);
+    opacity: 0;
+    transform: scale(1.03);
+    will-change: opacity, transform;
+    transition: opacity 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.menu-bg-slide.active {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.menu-bg-radial-overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, rgba(5,6,8,0.1) 10%, rgba(5,6,8,0.85) 90%);
+}
+
+.menu-immersive-container {
+    position: relative;
+    z-index: 2;
+    width: min(1300px, 95%);
+    height: 85vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu-header-brand h2 {
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: 5px;
+    color: #fff;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.6s ease 0.2s;
+    margin-top: 10px;
+}
+
+.menu-overlay.active .menu-header-brand h2 {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.menu-header-brand h2 span {
+    color: var(--accent);
+}
+
+.fullscreen-nav-cards {
+    position: relative;
+    width: 100%;
+    height: 50vh;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 24px;
+    align-items: center;
+}
+
+.menu-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 20px;
+    padding: 40px 30px;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(50px);
+    will-change: transform, opacity;
+    transition: 
+        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+        border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+        background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+        box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+        opacity 0.8s;
+}
+
+.menu-overlay.active .menu-card {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: calc(var(--item-index) * 0.08s);
+}
+
+.card-1 { transform: translateY(-20px); }
+.card-2 { transform: translateY(40px); }
+.card-3 { transform: translateY(-40px); }
+.card-4 { transform: translateY(20px); }
+.card-5 { transform: translateY(-10px); }
+
+.menu-card a {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu-card .card-title {
+    font-size: 34px;
+    font-weight: 800;
+    color: rgba(255, 255, 255, 0.65);
+    letter-spacing: -1px;
+    transition: color 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.menu-card:hover {
+    background: rgba(0, 255, 135, 0.03); 
+    border-color: var(--accent);
+    box-shadow: 0 10px 30px rgba(0, 255, 135, 0.12);
+}
+
+.menu-card:hover .card-title {
+    color: var(--accent); 
+    transform: scale(1.05); 
+}
+
+.menu-footer-immersive {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.6s ease 0.5s;
+    margin-bottom: 10px;
+}
+
+.menu-overlay.active .menu-footer-immersive {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.menu-languages-immersive {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.menu-languages-immersive a {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+    transition: color 0.3s;
+}
+
+.menu-languages-immersive a:hover {
+    color: var(--accent);
+}
+
+.menu-footer-immersive p {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.3);
+    letter-spacing: 1px;
+}
+
+/* ==========================================
+   HERO TURINYS
+========================================== */
+.hero-content {
+    position: relative;
+    z-index: 10;
+    width: min(1000px, 90%);
+    margin-left: 8%;
+}
+
+.studio-tag {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 25px;
+    font-weight: 700;
+}
+
+.hero-content h1 {
+    font-size: clamp(42px, 7.5vw, 86px);
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: -3px;
+    margin-bottom: 35px;
+}
+
+.hero-content h1 span {
+    color: rgba(255, 255, 255, 0.25);
+}
+
+.hero-content p {
+    font-size: clamp(16px, 2.2vw, 20px);
+    line-height: 1.6;
+    max-width: 600px;
+    color: var(--text-muted);
+    font-weight: 300;
+}
+
+/* ==========================================
+   SERVICES (STICKY LAYOUT)
+========================================== */
+.services-wrapper { 
+    display: flex; 
+    gap: 80px; 
+    align-items: flex-start; 
+}
+.services-content { 
+    flex: 1; 
+}
+.services-visual { 
+    flex: 0 0 40%; 
+    position: sticky; 
+    top: 120px; 
+    height: 500px; 
+    border-radius: 20px; 
+    overflow: hidden; /* Būtina, kad scale efektas gražiai atrodytų */
+    will-change: transform; 
+}
+.visual-img { 
+    width: 100%; 
+    height: 100%; 
+    background-size: cover; 
+    background-position: center; 
+    transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1); 
+}
+.services-grid { 
+    display: grid; 
+    grid-template-columns: 1fr; 
+    gap: 20px; 
+}
+
+.services, .gallery, .about, .contact {
+    padding: 160px 0;
+    background: var(--bg-dark);
+}
+
+.section-title { margin-bottom: 80px; }
+.section-title span { font-size: 11px; letter-spacing: 4px; color: var(--text-muted); font-weight: 700; display: block; margin-bottom: 12px; }
+.section-title h2 { font-size: clamp(32px, 4vw, 48px); font-weight: 800; letter-spacing: -1.5px; }
+
+.service-card {
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.01);
+    border-radius: 16px;
+    border: 1px solid var(--border-light);
+    cursor: pointer;
+    transition: var(--transition-cubic);
+}
+.service-card:hover {
+    border-color: var(--accent);
+    background: rgba(255, 255, 255, 0.03);
+}
+.service-card h3 { font-size: 26px; font-weight: 700; margin-bottom: 10px; }
+.service-card p { color: var(--text-muted); line-height: 1.6; }
+
+/* ==================================================
+   CONTACT FORM STYLES (INTEGRATED)
+   ================================================== */
+.contact-form { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 20px; 
+    max-width: 600px; 
+    margin-top: 40px;
+}
+
+.contact-form input, 
+.contact-form textarea {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-light);
+    padding: 20px;
+    color: #fff;
+    border-radius: 12px;
+    font-family: 'Inter', sans-serif;
+    width: 100%;
+}
+
+.contact-form input:focus, 
+.contact-form textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+.contact-form button {
+    background: var(--accent);
+    color: #000;
+    padding: 20px;
+    border: none;
+    border-radius: 12px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.contact-form button:hover { 
+    opacity: 0.8; 
+    box-shadow: 0 0 20px rgba(0, 255, 135, 0.2);
+}
+
+/* ==========================================
+   GALLERY SECTION (MASONRY PREMIUM)
+========================================== */
+.gallery-grid-premium {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 300px;
+    gap: 20px;
+}
+
+.gallery-item { 
+    position: relative; 
+    border-radius: 24px; 
+    overflow: hidden; 
+    background: #0f1115; 
+}
+
+.item-wide { grid-column: span 2; }
+.item-large { grid-row: span 2; } /* Pridėjau dideliam kadrui */
+
+.gallery-item img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+    filter: grayscale(30%) contrast(1.05); 
+    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), filter 0.7s; 
+}
+
+.gallery-item-overlay { 
+    position: absolute; 
+    bottom: 30px; 
+    left: 30px;
+    background: rgba(0,0,0,0.4); 
+    padding: 10px 20px; 
+    border-radius: 50px; 
+    backdrop-filter: blur(10px);
+    font-size: 12px; 
+    text-transform: uppercase; 
+    letter-spacing: 2px; 
+    opacity: 0; 
+    transition: opacity 0.5s ease; 
+}
+
+.gallery-item:hover img { 
+    filter: grayscale(0%) contrast(1); 
+    transform: scale(1.04); 
+}
+
+.gallery-item:hover .gallery-item-overlay { opacity: 1; }
+
+/* ABOUT & CONTACT */
+.about-text { max-width: 900px; font-size: clamp(18px, 2.8vw, 24px); line-height: 1.6; color: rgba(255, 255, 255, 0.85); font-weight: 300; }
+.contact-details p { font-size: clamp(22px, 4vw, 36px); font-weight: 700; margin-top: 20px; letter-spacing: -1.5px; }
+.hover-underline { position: relative; display: inline-block; }
+.hover-underline::after { content: ''; position: absolute; width: 100%; transform: scaleX(0); height: 2px; bottom: 0; left: 0; background-color: var(--accent); transform-origin: bottom right; transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+.hover-underline:hover::after { transform: scaleX(1); transform-origin: bottom left; }
+.footer { padding: 50px 20px; border-top: 1px solid var(--border-light); text-align: center; font-size: 13px; color: var(--text-muted); }
+
+@media (max-width: 1024px) {
+    .fullscreen-nav-cards { grid-template-columns: repeat(3, 1fr); height: auto; gap: 16px; padding: 20px 0; }
+    .menu-card { height: 180px; padding: 20px; transform: none !important; }
+    .menu-card:hover { box-shadow: none; }
+    .menu-card .card-title { font-size: 24px; }
+}
+
+@media (max-width: 768px) {
+    /* Paslaugų sekcija */
+    .services-wrapper { flex-direction: column !important; }
     
-    // --- 1. VERTIMŲ DUOMENŲ BAZĖ ---
-    const translations = {
-        en: {
-            "nav-home": "HOME", "nav-services": "SERVICES", "nav-gallery": "GALLERY", "nav-about": "ABOUT", "nav-contact": "CONTACT",
-            "hero-title": "Driven by Precision.<br><span>Trusted Across Europe.</span>",
-            "hero-desc": "Reliable transport solutions for premium vehicles, yachts and commercial freight.",
-            "services-tag": "OUR SERVICES", "services-title": "Premium Logistics Solutions",
-            "service1-title": "Vehicle Transport", "service1-desc": "Safe and professional transport of passenger cars, luxury vehicles and commercial vehicles across Europe.",
-            "service2-title": "Boat Transport", "service2-desc": "Secure transport of boats, yachts and watercraft with specialized equipment and experienced drivers.",
-            "service3-title": "Freight Forwarding", "service3-desc": "International logistics solutions tailored to your business requirements.",
-            "service4-title": "Road Assistance 24/7", "service4-desc": "Fast roadside assistance and vehicle recovery available throughout Europe.",
-            "gallery-tag": "OUR FLEET", "gallery-title": "Precision in Motion",
-            "gallery-item1": "Luxury Fleet", "gallery-item2": "Secure Loading", "gallery-item3": "Professional Team", "gallery-item4": "European Coverage",
-            "about-tag": "ABOUT US", "about-title": "Driven by Precision.", "about-text": "Stratego Trans delivers premium transport, vehicle logistics and freight forwarding services across Europe with a strong focus on reliability, safety and precision.",
-            "contact-tag": "CONTACT", "contact-title": "Let's Move Forward",
-            "form-name": "Your Name", "form-email": "Your E-mail", "form-message": "Your Message", "form-submit": "SEND MESSAGE",
-            "label-address": "Address:", "label-phone": "Phone:", "label-email": "E-mail:",
-            "menu-footer-text": "Premium Transport & Logistics Standards"
-        },
-        lt: {
-            "nav-home": "PRADŽIA", "nav-services": "PASLAUGOS", "nav-gallery": "GALERIJA", "nav-about": "APIE MUS", "nav-contact": "KONTAKTAI",
-            "hero-title": "Tikslumas kelyje.<br><span>Patikimi visoje Europoje.</span>",
-            "hero-desc": "Patikimi transporto sprendimai premium klasės automobiliams, jachtoms ir komerciniams kroviniams.",
-            "services-tag": "MŪSŲ PASLAUGOS", "services-title": "Premium logistikos sprendimai",
-            "service1-title": "Transporto pervežimas", "service1-desc": "Saugus ir profesionalus lengvųjų, prabangių ir komercinių automobilių pervežimas visoje Europoje.",
-            "service2-title": "Laivų transportavimas", "service2-desc": "Saugus jachtų, katerių ir kitų vandens transporto priemonių pervežimas specializuota įranga.",
-            "service3-title": "Krovinių ekspedijavimas", "service3-desc": "Tarptautiniai logistikos sprendimai, pritaikyti jūsų verslo poreikiams.",
-            "service4-title": "Pagalba kelyje 24/7", "service4-desc": "Skubi pagalba kelyje ir automobilių evakuacija visoje Europoje.",
-            "gallery-tag": "MŪSŲ PARKAS", "gallery-title": "Tikslumas judesyje",
-            "gallery-item1": "Prabangus parkas", "gallery-item2": "Saugus pakrovimas", "gallery-item3": "Profesionali komanda", "gallery-item4": "Europos mastas",
-            "about-tag": "APIE MUS", "about-title": "Varomi tikslumo.", "about-text": "Stratego Trans teikia aukščiausios kokybės transporto, logistikos ir ekspedijavimo paslaugas Europoje, orientuodamiesi į patikimumą ir saugumą.",
-            "contact-tag": "KONTAKTAI", "contact-title": "Judėkime pirmyn",
-            "form-name": "Jūsų vardas", "form-email": "Jūsų el. paštas", "form-message": "Jūsų žinutė", "form-submit": "SIŲSTI ŽINUTĘ",
-            "label-address": "Adresas:", "label-phone": "Telefonas:", "label-email": "El. paštas:",
-            "menu-footer-text": "Premium transporto ir logistikos standartai"
-        },
-        de: {
-            "nav-home": "STARTSEITE", "nav-services": "DIENSTLEISTUNGEN", "nav-gallery": "GALERIE", "nav-about": "ÜBER UNS", "nav-contact": "KONTAKT",
-            "hero-title": "Präzision in Bewegung.<br><span>Europaweit vertraut.</span>",
-            "hero-desc": "Zuverlässige Transportlösungen für Premiumfahrzeuge, Yachten und gewerbliche Fracht.",
-            "services-tag": "UNSERE LEISTUNGEN", "services-title": "Premium Logistiklösungen",
-            "service1-title": "Fahrzeugtransport", "service1-desc": "Sicherer und professioneller Transport von PKWs, Luxusfahrzeugen und Nutzfahrzeugen in ganz Europa.",
-            "service2-title": "Bootstransport", "service2-desc": "Sicherer Transport von Booten, Yachten und Wasserfahrzeugen mit Spezialausrüstung und erfahrenen Fahrern.",
-            "service3-title": "Güterkraftverkehr", "service3-desc": "Internationale Logistiklösungen, maßgeschneidert auf Ihre geschäftlichen Anforderungen.",
-            "service4-title": "Pannenhilfe 24/7", "service4-desc": "Schnelle Pannenhilfe und Fahrzeugbergung in ganz Europa verfügbar.",
-            "gallery-tag": "UNSERE FLOTTE", "gallery-title": "Präzision in Bewegung",
-            "gallery-item1": "Luxusflotte", "gallery-item2": "Sichere Verladung", "gallery-item3": "Professionelles Team", "gallery-item4": "Europaweite Abdeckung",
-            "about-tag": "ÜBER UNS", "about-title": "Angetrieben von Präzision.", "about-text": "Stratego Trans bietet erstklassige Transport-, Logistik- und Speditionsdienstleistungen in ganz Europa mit einem starken Fokus auf Zuverlässigkeit, Sicherheit und Präzision.",
-            "contact-tag": "KONTAKT", "contact-title": "Lassen Sie uns vorankommen",
-            "form-name": "Ihr Name", "form-email": "Ihre E-Mail", "form-message": "Ihre Nachricht", "form-submit": "NACHRICHT SENDEN",
-            "label-address": "Adresse:", "label-phone": "Telefon:", "label-email": "E-Mail:",
-            "menu-footer-text": "Premium Transport- und Logistikstandards"
-        },
-        pl: {
-            "nav-home": "START", "nav-services": "USŁUGI", "nav-gallery": "GALERIA", "nav-about": "O NAS", "nav-contact": "KONTAKT",
-            "hero-title": "Precyzja w ruchu.<br><span>Zaufanie w całej Europie.</span>",
-            "hero-desc": "Niezawodne rozwiązania transportowe dla pojazdów premium, jachtów i ładunków komercyjnych.",
-            "services-tag": "NASZE USŁUGI", "services-title": "Premium rozwiązania logistyczne",
-            "service1-title": "Transport pojazdów", "service1-desc": "Bezpieczny i profesjonalny przewóz samochodów osobowych, luksusowych i komercyjnych w całej Europie.",
-            "service2-title": "Transport łodzi", "service2-desc": "Bezpieczny transport łodzi, jachtów i jednostek pływających przy użyciu specjalistycznego sprzętu.",
-            "service3-title": "Spedycja towarów", "service3-desc": "Międzynarodowe rozwiązania logistyczne dostosowane do wymagań Twojego biznesu.",
-            "service4-title": "Pomoc drogowa 24/7", "service4-desc": "Szybka pomoc drogowa i holowanie dostępne w całej Europie.",
-            "gallery-tag": "NASZA FLOTA", "gallery-title": "Precyzja w ruchu",
-            "gallery-item1": "Flota luksusowa", "gallery-item2": "Bezpieczny załadunek", "gallery-item3": "Profesjonalny zespół", "gallery-item4": "Zasięg europejski",
-            "about-tag": "O NAS", "about-title": "Napędzani precyzją.", "about-text": "Stratego Trans świadczy najwyższej jakości usługi transportowe, logistyczne i spedycyjne w Europie, stawiając na niezawodność, bezpieczeństwo i precyzję.",
-            "contact-tag": "KONTAKT", "contact-title": "Idźmy naprzód",
-            "form-name": "Twoje imię", "form-email": "Twój e-mail", "form-message": "Twoja wiadomość", "form-submit": "WYŚLIJ WIADOMOŚĆ",
-            "label-address": "Adres:", "label-phone": "Telefon:", "label-email": "E-mail:",
-            "menu-footer-text": "Standardy transportu i logistyki premium"
-        },
-        ru: {
-            "nav-home": "ГЛАВНАЯ", "nav-services": "УСЛУГИ", "nav-gallery": "ГАЛЕРЕЯ", "nav-about": "О НАС", "nav-contact": "КОНТАКТЫ",
-            "hero-title": "Точность в движении.<br><span>Доверие по всей Европе.</span>",
-            "hero-desc": "Надежные транспортные решения для премиальных автомобилей, яхт и коммерческих грузов.",
-            "services-tag": "НАШИ УСЛУГИ", "services-title": "Премиум логистические решения",
-            "service1-title": "Перевозка автомобилей", "service1-desc": "Безопасная и профессиональная перевозка легковых, люксовых и коммерческих автомобилей по всей Европе.",
-            "service2-title": "Перевозка катеров", "service2-desc": "Безопасная перевозка катеров, яхт и водной техники со специальным оборудованием.",
-            "service3-title": "Экспедирование грузов", "service3-desc": "Международные логистические решения, адаптированные к потребностям вашего бизнеса.",
-            "service4-title": "Помощь на дороге 24/7", "service4-desc": "Быстрая помощь на дороге и эвакуация доступны по всей Европе.",
-            "gallery-tag": "НАШ АВТОПАРК", "gallery-title": "Точность в движении",
-            "gallery-item1": "Люксовый автопарк", "gallery-item2": "Безопасная погрузка", "gallery-item3": "Профессиональная команда", "gallery-item4": "Европейский охват",
-            "about-tag": "О НАС", "about-title": "Движимые точностью.", "about-text": "Stratego Trans предоставляет первоклассные услуги по транспортировке, логистике и экспедированию грузов в Европе с акцентом на надежность, безопасность и точность.",
-            "contact-tag": "КОНТАКТЫ", "contact-title": "Давайте двигаться вперед",
-            "form-name": "Ваше имя", "form-email": "Ваш эл. адрес", "form-message": "Ваше сообщение", "form-submit": "ОТПРАВИТЬ СООБЩЕНИЕ",
-            "label-address": "Адрес:", "label-phone": "Телефон:", "label-email": "Эл. почта:",
-            "menu-footer-text": "Премиум стандарты транспорта и логистики"
-        }
-    };
-
-    window.changeLang = (lang) => {
-        const langData = translations[lang];
-        if (!langData) return;
-        
-        Object.keys(langData).forEach(id => {
-            const el = document.getElementById(id);
-            if (el) {
-                if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') { el.placeholder = langData[id]; }
-                else if (el.tagName === 'BUTTON') { el.innerText = langData[id]; }
-                else { el.innerHTML = langData[id]; }
-            }
-        });
-        
-        localStorage.setItem('preferredLang', lang);
-
-        // ŠI EILUTĖ ATNAUJINS FORMOS NUORODĄ IŠKART PO KALBOS PASPAUDIMO:
-        if(typeof updateRedirect === 'function') updateRedirect();
-    };
-
-    // Kalbos nustatymas pagal URL arba saugomą reikšmę
-    const urlParams = new URLSearchParams(window.location.search);
-    const savedLang = urlParams.get('lang') || localStorage.getItem('preferredLang') || 'en';
-    changeLang(savedLang);
-
-    const menuBtn = document.getElementById('menuBtn');
-    const menuOverlay = document.getElementById('menuOverlay');
-    const menuBackdrop = document.getElementById('menuBackdrop');
-    const menuCards = document.querySelectorAll('.menu-card');
-    const bgSlides = document.querySelectorAll('.menu-bg-slide');
-    const serviceCards = document.querySelectorAll('.service-card');
-    const serviceVisual = document.getElementById('serviceVisual');
-
-    function toggleMenu() {
-        const isActive = menuOverlay.classList.contains('active');
-        menuBtn.classList.toggle('active');
-        menuOverlay.classList.toggle('active');
-        menuBackdrop.classList.toggle('active');
-        document.body.style.overflow = !isActive ? 'hidden' : '';
+    .services-visual { 
+        position: relative !important; 
+        height: 300px !important; 
+        width: 100% !important; 
+        order: -1 !important; 
+        display: block !important;
+        opacity: 1 !important;
+        transform: none !important;
+        background-color: #1a1c22;
+        background-size: cover !important;
+        background-position: center !important;
     }
 
-    function showBg(bgId) { bgSlides.forEach(s => s.classList.toggle('active', s.id === bgId)); }
-    function resetBgs() { bgSlides.forEach(s => s.classList.toggle('active', s.id === 'bg-default')); }
+    /* Galerija */
+    .gallery-grid-premium {
+        display: flex !important;
+        overflow-x: auto !important;
+        flex-wrap: nowrap !important;
+    }
+    
+    .gallery-item {
+        flex: 0 0 80vw !important;
+        height: 300px !important;
+    }
+}
 
-    if(menuBtn) menuBtn.addEventListener('click', (e) => { e.preventDefault(); toggleMenu(); });
-    if(menuBackdrop) menuBackdrop.addEventListener('click', toggleMenu);
+/* ==================================================
+   ATNAUJINTI KINEMATINIAI STILIAI
+================================================== */
 
-    menuCards.forEach(card => {
-        card.addEventListener('click', () => { setTimeout(toggleMenu, 150); });
-        card.addEventListener('mouseenter', () => { const target = card.querySelector('a').getAttribute('data-bg'); if (target) showBg(target); });
-        card.addEventListener('mouseleave', resetBgs);
-    });
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
 
-    const scrollElements = document.querySelectorAll('.scroll-reveal');
-    const handleScrollAnimation = () => {
-        scrollElements.forEach(el => { if (el.getBoundingClientRect().top <= window.innerHeight * 0.85) el.classList.add('active'); });
-        serviceCards.forEach(card => {
-            const rect = card.getBoundingClientRect();
-            if (rect.top >= 0 && rect.top <= window.innerHeight / 2) {
-                const newImg = card.getAttribute('data-img');
-                if (serviceVisual && serviceVisual.style.backgroundImage !== `url("${newImg}")`) {
-                    serviceVisual.style.opacity = 0;
-                    setTimeout(() => {
-                        serviceVisual.style.backgroundImage = `url("${newImg}")`;
-                        serviceVisual.style.opacity = 1;
-                    }, 300);
-                }
-            }
-        });
-    };
+.scroll-reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
 
-    window.addEventListener('scroll', handleScrollAnimation);
-    setTimeout(handleScrollAnimation, 150);
-});
+#serviceVisual {
+    transition: background-image 0.8s ease-in-out, transform 2s ease-out;
+    opacity: 1; /* Įsitikink, kad elementas matomas */
+}
+
+/* ==================================================
+   NUOTRAUKŲ OPTIMIZAVIMAS IR RĖMELIAI
+================================================== */
+
+.service-card, .gallery-item img {
+    object-fit: cover; 
+    width: 100%;
+    height: 100%;
+}
+
+.service-card {
+    border-radius: 8px;
+    overflow: hidden;
+    /* Pridedu subtilų šešėlį, kad atrodytų profesionaliau */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2); 
+}
+
+/* Minimalistinė, premium kontaktų sekcija */
+#contact {
+    background-color: #050505; /* Labai tamsus, gilus fonas */
+    padding: 120px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contact-container {
+    background: rgba(255, 255, 255, 0.02); /* Labai subtilus skaidrumas */
+    backdrop-filter: blur(15px); /* „Stiklo“ efektas */
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 60px;
+    border-radius: 30px; /* Daugiau apvalumo – moderniau */
+    max-width: 700px;
+    width: 100%;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5); /* Gilus šešėlis suteikia svorio */
+}
+
+/* Teksto spalvos, kad gražiai žiūrėtųsi tamsiame fone */
+#contact h2, #contact p, #contact label {
+    color: #ffffff;
+}
+
+/* Panaikiname standartinius rėmelius, kurie sukuria „dėžutės“ jausmą */
+input, textarea {
+    background: rgba(255, 255, 255, 0.05) !important; /* Subtili spalva vietoje rėmelio */
+    border: 1px solid rgba(255, 255, 255, 0.1) !important; 
+    color: white !important;
+    padding: 15px !important;
+    border-radius: 12px !important;
+    outline: none !important;
+    transition: all 0.3s ease;
+}
+
+/* Kai paspaudi laukelį (focus), jis gražiai nušvinta */
+input:focus, textarea:focus {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Mygtuko išvalymas */
+button {
+    border: none !important;
+    box-shadow: none !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Panaikiname visus rėmelius kontaktų formos viduje */
+#contact form, 
+#contact .contact-info, 
+#contact input, 
+#contact textarea {
+    border: none !important; /* Jokių linijų */
+    box-shadow: none !important; /* Jokių šešėlių, kurie piešia dėžutes */
+}
+
+/* Suvienodiname visų dalių spalvą, kad nebūtų „atspalvių skirtumų“ */
+#contact .contact-container, 
+#contact input, 
+#contact textarea {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Kad kontaktų tekstas ir forma atrodytų kaip viena visuma, o ne atskiros dalys */
+#contact {
+    background-color: #050505 !important;
+}
+
+/* Švelnus nuotraukų perėjimas */
+#serviceVisual {
+    /* Pridėjome transform į transition, kad veiktų scale efektas */
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 100%;
+    will-change: transform, opacity; /* Optimizacija sklandumui */
+}
+
+/* Priverstinis nuotraukų rodymas */
+.services-visual {
+    background-image: url('https://placehold.co/600x400/1a1c22/white?text=Loading') !important; /* Laikinas placeholderis, jei JS neveikia */
+    background-size: cover !important;
+    background-position: center !important;
+}
+
+/* Galerijos elementų sutvarkymas mobiliajame */
+@media (max-width: 768px) {
+    .gallery-item {
+        flex: 0 0 75vw !important;
+        height: 300px !important;
+        scroll-snap-align: center;
+    }
+    .gallery-item img {
+        object-fit: contain !important; /* PAKEISTA: contain neleidžia nukirpti kraštų */
+        background-color: #050608;
+    }
+}
