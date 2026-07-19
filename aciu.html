@@ -59,12 +59,18 @@
     </div>
 
     <script>
-        const params = new URLSearchParams(window.location.search);
-        const lang = params.get('lang') || 'en';
-        document.querySelectorAll('.lang-section').forEach(el => el.classList.remove('active'));
-        const activeLang = document.getElementById('lang-' + lang) || document.getElementById('lang-en');
-        activeLang.classList.add('active');
-        setTimeout(() => { window.location.href = "index.html"; }, 8000); 
-    </script>
+    const params = new URLSearchParams(window.location.search);
+    const lang = params.get('lang') || 'en';
+    
+    // Rodo teisingą sekciją
+    document.querySelectorAll('.lang-section').forEach(el => el.classList.remove('active'));
+    const activeLang = document.getElementById('lang-' + lang) || document.getElementById('lang-en');
+    activeLang.classList.add('active');
+    
+    // Po 5 sekundžių grąžina į index.html su išsaugota kalba
+    setTimeout(() => { 
+        window.location.href = "index.html?lang=" + lang; 
+    }, 5000); 
+</script>
 </body>
 </html>
