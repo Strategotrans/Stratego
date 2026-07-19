@@ -158,8 +158,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
         });
-    }; // ŠITAS SKLIAUSTELIS BUVO PRALEISTAS
+    };
 
     window.addEventListener('scroll', handleScrollAnimation);
     setTimeout(handleScrollAnimation, 150);
+
+    // Ši dalis užtikrina kalbos atpažinimą grįžus iš aciu.html
+    const urlParams = new URLSearchParams(window.location.search);
+    const langFromUrl = urlParams.get('lang');
+
+    if (langFromUrl) {
+        changeLang(langFromUrl);
+    }
 });
