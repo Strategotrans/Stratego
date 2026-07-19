@@ -11,6 +11,91 @@
             font-family: 'Inter', sans-serif; 
             display: flex; justify-content: center; align-items: center; 
             min-height: 100vh;
+            opacity: 0; 
+            transition: opacity 0.5s ease-in-out; /* Greitesnis perėjimas */
+        }
+        body::before {
+            content: ''; position: absolute; width: 400px; height: 400px;
+            background: rgba(0, 255, 135, 0.08); filter: blur(150px); border-radius: 50%;
+        }
+        .container { position: relative; z-index: 1; text-align: center; padding: 20px; }
+        .check-circle { 
+            width: 80px; height: 80px; background: rgba(255, 255, 255, 0.05); 
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 30px; backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        h1 { font-size: 2rem; margin: 0 0 15px; }
+        p { color: rgba(255, 255, 255, 0.7); font-size: 1rem; max-width: 500px; margin: 0 auto; line-height: 1.6; }
+        .lang-section { display: none; }
+        .lang-section.active { display: block; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="check-circle">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#00ff87" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        </div>
+
+        <!-- JŪSŲ SEO TEKSTAI -->
+        <div id="lang-en" class="lang-section active">
+            <h1>Thank you for your message!</h1>
+            <p>We have received your inquiry and will contact you shortly.</p>
+        </div>
+        <div id="lang-lt" class="lang-section">
+            <h1>Dėkojame už jūsų užklausą!</h1>
+            <p>Gavome jūsų pranešimą ir netrukus su jumis susisieksime.</p>
+        </div>
+        <div id="lang-de" class="lang-section">
+            <h1>Vielen Dank für Ihre Nachricht!</h1>
+            <p>Wir haben Ihre Anfrage erhalten und werden uns in Kürze bei Ihnen melden.</p>
+        </div>
+        <div id="lang-pl" class="lang-section">
+            <h1>Dziękujemy za wiadomość!</h1>
+            <p>Otrzymaliśmy Twoje zapytanie i wkrótce się z Tobą skontaktujemy.</p>
+        </div>
+        <div id="lang-ru" class="lang-section">
+            <h1>Спасибо за ваше сообщение!</h1>
+            <p>Мы получили ваш запрос и свяжемся с вами в ближайшее время.</p>
+        </div>
+    </div>
+
+    <script>
+        // Puslapio atsiradimas
+        window.addEventListener('load', () => {
+            document.body.style.opacity = "1";
+        });
+
+        const params = new URLSearchParams(window.location.search);
+        const lang = params.get('lang') || 'en';
+        
+        document.querySelectorAll('.lang-section').forEach(el => el.classList.remove('active'));
+        const activeLang = document.getElementById('lang-' + lang) || document.getElementById('lang-en');
+        activeLang.classList.add('active');
+        
+        // Pagreitintas laikas: rodo 2 sekundes, tada per 0.5s išnyksta
+        setTimeout(() => {
+            document.body.style.opacity = "0"; 
+            setTimeout(() => {
+                window.location.href = "index.html?lang=" + lang;
+            }, 500); // Siderinome su transition 0.5s
+        }, 2000); 
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Stratego Trans | Thank You</title>
+    <style>
+        body { 
+            margin: 0; padding: 0; 
+            background: #050608; 
+            color: #fff; 
+            font-family: 'Inter', sans-serif; 
+            display: flex; justify-content: center; align-items: center; 
+            min-height: 100vh;
             opacity: 0; /* Pradžioje nematomas, kad galėtume gražiai parodyti */
             transition: opacity 0.8s ease-in-out;
         }
