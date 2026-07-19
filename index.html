@@ -196,11 +196,12 @@
                 <h2 id="contact-title">Let's Move Forward</h2>
             </div>
             
-            <form action="https://api.web3forms.com/submit" method="POST" class="contact-form">
-    <!-- Jūsų raktas -->
+            <form action="https://api.web3forms.com/submit" method="POST" class="contact-form" id="contactForm">
     <input type="hidden" name="access_key" value="7f057cee-d1fa-4f00-8242-bbabba4e6e4a">
     
-    <!-- Paslėptas laukas apsaugai nuo robotų -->
+    <!-- Šis laukas nukreips į jūsų 'aciu.html' -->
+    <input type="hidden" name="redirect" id="redirectInput" value="https://www.strategotrans.eu/aciu.html">
+    
     <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
     
     <input type="text" name="name" id="form-name" placeholder="Your Name" required>
@@ -210,6 +211,12 @@
     <button type="submit" id="form-submit">SEND MESSAGE</button>
 </form>
 
+<script>
+    // Ši funkcija paima kalbą iš localStorage ir prideda ją prie nuorodos
+    const currentLang = localStorage.getItem('preferredLang') || 'en';
+    const redirectInput = document.getElementById('redirectInput');
+    redirectInput.value = "https://www.strategotrans.eu/aciu.html?lang=" + currentLang;
+</script>
             <div class="contact-info-box" style="margin-top: 40px; color: #fff;">
                 <h3 style="margin-bottom: 15px;">Stratego Trans Sp. z o.o.</h3>
                 <p><strong id="label-address">Address:</strong> Maczków 30, 69-108 Maczków, Polska</p>
