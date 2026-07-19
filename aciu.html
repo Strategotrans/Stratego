@@ -2,43 +2,22 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Stratego Trans | Thank You</title>
+    <title>Stratego Trans</title>
     <style>
         body { 
-            margin: 0; padding: 0; 
-            background: #050608; 
-            color: #fff; 
-            font-family: 'Inter', sans-serif; 
-            display: flex; justify-content: center; align-items: center; 
-            min-height: 100vh;
-            opacity: 0; 
-            transition: opacity 0.8s ease-in-out;
+            margin: 0; padding: 0; background: #050608; color: #fff; 
+            font-family: 'Inter', sans-serif; display: flex; 
+            justify-content: center; align-items: center; 
+            min-height: 100vh; opacity: 0; transition: opacity 0.8s ease;
         }
-        body::before {
-            content: ''; position: absolute; width: 400px; height: 400px;
-            background: rgba(0, 255, 135, 0.08); filter: blur(150px); border-radius: 50%;
-        }
-        .container { position: relative; z-index: 1; text-align: center; padding: 20px; }
-        .check-circle { 
-            width: 80px; height: 80px; background: rgba(255, 255, 255, 0.05); 
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            margin: 0 auto 30px; backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        h1 { font-size: 2rem; margin: 0 0 15px; }
-        p { color: rgba(255, 255, 255, 0.7); font-size: 1.1rem; max-width: 600px; margin: 0 auto; line-height: 1.6; }
-        
-        /* Griežtai paslepiame visas kalbų sekcijas iškart */
-        .lang-section { display: none !important; }
+        .container { text-align: center; padding: 20px; }
+        .lang-section { display: none; } /* Viskas slepiama pagal nutylėjimą */
     </style>
 </head>
 <body>
 
     <div class="container">
-        <div class="check-circle">
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#00ff87" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-        </div>
-
+        <!-- Čia įkeliame visus jūsų SEO tekstus -->
         <div id="lang-en" class="lang-section">
             <h1>Thank You!</h1>
             <p>Request received. We specialize in freight forwarding, local and international transport, vehicle, yacht, oversized cargo, trailer towing, and roadside assistance. We will contact you shortly.</p>
@@ -62,26 +41,23 @@
     </div>
 
     <script>
-        // Saugiai paimame kalbą
+        // 1. Paimame kalbą iš URL
         const params = new URLSearchParams(window.location.search);
         const lang = params.get('lang') || 'en';
         
-        // Randame elementą pagal ID
-        const targetSection = document.getElementById('lang-' + lang) || document.getElementById('lang-en');
+        // 2. Parodome tik reikiamą sekciją
+        const target = document.getElementById('lang-' + lang) || document.getElementById('lang-en');
+        target.style.display = 'block';
         
-        // Priverstinai įjungiame tik šį vieną elementą
-        targetSection.style.setProperty('display', 'block', 'important');
-        
-        // Puslapio atsiradimas
+        // 3. Išnykimo efektas ir grįžimas
         window.onload = () => { document.body.style.opacity = "1"; };
         
-        // Išnykimas ir grįžimas
         setTimeout(() => {
-            document.body.style.opacity = "0"; 
+            document.body.style.opacity = "0";
             setTimeout(() => {
                 window.location.href = "index.html?lang=" + lang;
-            }, 800); 
-        }, 3000); 
+            }, 800);
+        }, 3000);
     </script>
 </body>
 </html>
