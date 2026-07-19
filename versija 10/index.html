@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Nustatymai -->
+    <title>Stratego Trans | Premium Transport Solutions</title>
+    <meta name="description" content="Stratego Trans - International transport, freight forwarding and vehicle logistics throughout Europe.">
+    
+    <!-- Socialinių tinklų nustatymai (Open Graph) -->
+    <meta property="og:title" content="Stratego Trans | Premium Transport Solutions">
+    <meta property="og:description" content="Stratego Trans - International transport, freight forwarding and vehicle logistics throughout Europe.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.strategotrans.eu">
+    
+    <!-- Šriftai ir stiliai -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body id="top">
+
+<!-- HERO SEKCIJA -->
+<section class="hero">
+    <video autoplay loop muted playsinline webkit-playsinline preload="auto" class="hero-video">
+        <source src="assets/videos/video.mp4" type="video/mp4">
+    </video>
+    
+    <div class="hero-overlay"></div>
+
+    <!-- HEADER -->
+    <header class="header animate-fade-in">
+        <div class="header-inner">
+            <a href="#" class="menu-btn" id="menuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </a>
+        </div>
+    </header>
+
+    <!-- FULLSCREEN MENIU -->
+    <div class="menu-backdrop" id="menuBackdrop"></div>
+    <aside class="menu-overlay" id="menuOverlay">
+        
+        <div class="menu-bg-container">
+            <div class="menu-bg-slide active" id="bg-default" style="background-image: linear-gradient(to bottom, rgba(5,6,8,0.25), rgba(5,6,8,0.8)), url('assets/images/truck1.jpg');"></div>
+            <div class="menu-bg-slide" id="bg-home" style="background-image: linear-gradient(to bottom, rgba(5,6,8,0.25), rgba(5,6,8,0.8)), url('assets/images/truck1.jpg');"></div>
+            <div class="menu-bg-slide" id="bg-services" style="background-image: linear-gradient(to bottom, rgba(5,6,8,0.25), rgba(5,6,8,0.8)), url('assets/images/truck2.jpg');"></div>
+            <div class="menu-bg-slide" id="bg-gallery" style="background-image: linear-gradient(to bottom, rgba(5,6,8,0.15), rgba(5,6,8,0.8)), url('assets/images/truck3.jpg');"></div>
+            <div class="menu-bg-slide" id="bg-about" style="background-image: linear-gradient(to bottom, rgba(5,6,8,0.25), rgba(5,6,8,0.8)), url('assets/images/truck4.jpg');"></div>
+            <div class="menu-bg-slide" id="bg-contact" style="background-image: linear-gradient(to bottom, rgba(5,6,8,0.25), rgba(5,6,8,0.8)), url('assets/images/truck5.jpg');"></div>
+            <div class="menu-bg-radial-overlay"></div>
+        </div>
+        
+        <div class="menu-immersive-container">
+            <div class="menu-header-brand">
+                <h2>STRATEGO <span>TRANS</span></h2>
+            </div>
+            
+            <nav class="fullscreen-nav-cards" id="navCardsContainer">
+                <div class="menu-card card-1" style="--item-index: 1; --speed: 0.15;">
+                    <a href="#top" data-bg="bg-home"><span class="card-title" id="nav-home">HOME</span></a>
+                </div>
+                <div class="menu-card card-2" style="--item-index: 2; --speed: -0.1;">
+                    <a href="#services" data-bg="bg-services"><span class="card-title" id="nav-services">SERVICES</span></a>
+                </div>
+                <div class="menu-card card-3" style="--item-index: 3; --speed: 0.2;">
+                    <a href="#gallery" data-bg="bg-gallery"><span class="card-title" id="nav-gallery">GALLERY</span></a>
+                </div>
+                <div class="menu-card card-4" style="--item-index: 4; --speed: -0.15;">
+                    <a href="#about" data-bg="bg-about"><span class="card-title" id="nav-about">ABOUT</span></a>
+                </div>
+                <div class="menu-card card-5" style="--item-index: 5; --speed: 0.05;">
+                    <a href="#contact" data-bg="bg-contact"><span class="card-title" id="nav-contact">CONTACT</span></a>
+                </div>
+            </nav>
+            
+            <div class="menu-footer-immersive">
+                <!-- KALBŲ PASIRINKIMAS SU INTERAKCIJA -->
+                <div class="menu-languages-immersive">
+                    <a href="#" onclick="changeLang('de'); return false;">DE</a>
+                    <a href="#" onclick="changeLang('en'); return false;">EN</a>
+                    <a href="#" onclick="changeLang('pl'); return false;">PL</a>
+                    <a href="#" onclick="changeLang('lt'); return false;">LT</a>
+                    <a href="#" onclick="changeLang('ru'); return false;">RU</a>
+                </div>
+                <p id="menu-footer-text">Premium Transport & Logistics Standards</p>
+            </div>
+        </div>
+    </aside>
+
+    <div class="hero-content">
+        <span class="studio-tag reveal-delay-1" style="font-size: 16px; font-weight: 800;">
+            STRATEGO <span style="color: var(--accent);">TRANS</span>
+        </span>
+        <h1 class="reveal" id="hero-title">
+            Driven by Precision.<br>
+            <span>Trusted Across Europe.</span>
+        </h1>
+        <p class="reveal-delay-2" id="hero-desc">
+            Reliable transport solutions for premium vehicles, yachts and commercial freight.
+        </p>
+    </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="services section-scroll">
+    <div class="container services-wrapper">
+        <div class="services-content">
+            <div class="section-title scroll-reveal">
+                <span id="services-tag">OUR SERVICES</span>
+                <h2 id="services-title">Premium Logistics Solutions</h2>
+            </div>
+
+            <div class="services-grid">
+                <article class="service-card scroll-reveal" data-img="assets/images/truck1.jpg">
+                    <h3 id="service1-title">Vehicle Transport</h3>
+                    <p id="service1-desc">Safe and professional transport of passenger cars, luxury vehicles and commercial vehicles across Europe.</p>
+                </article>
+
+                <article class="service-card scroll-reveal" data-img="assets/images/truck2.jpg">
+                    <h3 id="service2-title">Boat Transport</h3>
+                    <p id="service2-desc">Secure transport of boats, yachts and watercraft with specialized equipment and experienced drivers.</p>
+                </article>
+
+                <article class="service-card scroll-reveal" data-img="assets/images/truck3.jpg">
+                    <h3 id="service3-title">Freight Forwarding</h3>
+                    <p id="service3-desc">International logistics solutions tailored to your business requirements.</p>
+                </article>
+
+                <article class="service-card scroll-reveal" data-img="assets/images/truck4.jpg">
+                    <h3 id="service4-title">Road Assistance 24/7</h3>
+                    <p id="service4-desc">Fast roadside assistance and vehicle recovery available throughout Europe.</p>
+                </article>
+            </div>
+        </div>
+        <div class="services-visual">
+            <div class="visual-img" id="serviceVisual" style="background-image: url('assets/images/truck1.jpg');"></div>
+        </div>
+    </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery" class="gallery section-scroll">
+    <div class="container">
+        <div class="section-title scroll-reveal">
+            <span id="gallery-tag">OUR FLEET</span>
+            <h2 id="gallery-title">Precision in Motion</h2>
+        </div>
+        
+        <div class="gallery-grid-masonry">
+            <div class="gallery-item item-large scroll-reveal">
+                <img src="assets/images/truck1.jpg" alt="Premium Transport">
+            </div>
+            <div class="gallery-item scroll-reveal">
+                <img src="assets/images/truck3.jpg" alt="Professional Team">
+            </div>
+            <div class="gallery-item scroll-reveal">
+                <img src="assets/images/truck23.jpg" alt="Professional Team">
+            </div>
+            <div class="gallery-item scroll-reveal">
+                <img src="assets/images/truck22.jpg" alt="Professional Team">
+            </div>
+            <div class="gallery-item scroll-reveal">
+                <img src="assets/images/truck21.jpg" alt="Professional Team">
+            </div>
+            <div class="gallery-item item-wide scroll-reveal">
+                <img src="assets/images/truck20.jpg" alt="Across Europe">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="about section-scroll">
+    <div class="container">
+        <div class="section-title scroll-reveal">
+            <span id="about-tag">ABOUT US</span>
+            <h2 id="about-title">Driven by Precision.</h2>
+        </div>
+        <p class="about-text scroll-reveal" id="about-text">
+            Stratego Trans delivers premium transport, vehicle logistics and freight forwarding services across Europe with a strong focus on reliability, safety and precision.
+        </p>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact section-scroll">
+    <div class="container">
+        <div class="contact-container scroll-reveal"> <!-- Čia pridėjome stiklinę kortelę -->
+            <div class="section-title">
+                <span id="contact-tag">CONTACT</span>
+                <h2 id="contact-title">Let's Move Forward</h2>
+            </div>
+            
+            <form action="https://api.web3forms.com/submit" method="POST" class="contact-form">
+    <!-- Jūsų raktas -->
+    <input type="hidden" name="access_key" value="7f057cee-d1fa-4f00-8242-bbabba4e6e4a">
+    
+    <!-- Paslėptas laukas apsaugai nuo robotų -->
+    <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+    
+    <input type="text" name="name" id="form-name" placeholder="Your Name" required>
+    <input type="email" name="email" id="form-email" placeholder="Your E-mail" required>
+    <textarea name="message" id="form-message" placeholder="Your Message" rows="5" required></textarea>
+    
+    <button type="submit" id="form-submit">SEND MESSAGE</button>
+</form>
+
+            <div class="contact-info-box" style="margin-top: 40px; color: #fff;">
+                <h3 style="margin-bottom: 15px;">Stratego Trans Sp. z o.o.</h3>
+                <p><strong id="label-address">Address:</strong> Maczków 30, 69-108 Maczków, Polska</p>
+                <p><strong id="label-phone">Phone:</strong> <a href="tel:+48515983303" style="color: var(--accent);">+48 515 983 303</a></p>
+                <p><strong id="label-email">E-mail:</strong> <a href="mailto:info@strategotrans.eu" style="color: var(--accent);">info@strategotrans.eu</a></p>
+                <p style="font-size: 0.8em; opacity: 0.6; margin-top: 10px;">KRS: 0001249419</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="container" id="footer-copy">
+        &copy; 2026 Stratego Trans. All Rights Reserved.
+    </div>
+</footer>
+
+<!-- Štai čia prijungiame skriptą, kuris valdo vertimus -->
+<script src="assets/js/app.js"></script>
+</body>
+</html>
