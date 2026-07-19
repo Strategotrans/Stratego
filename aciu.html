@@ -8,6 +8,7 @@
             margin: 0; padding: 0; background: #050608; color: #fff; 
             font-family: 'Inter', sans-serif; display: flex; 
             justify-content: center; align-items: center; min-height: 100vh;
+            /* Pradžioje nematomas, perėjimas užtrunka 0.8s */
             opacity: 0; transition: opacity 0.8s ease-in-out;
         }
         body::before {
@@ -45,19 +46,23 @@
         const params = new URLSearchParams(window.location.search);
         const lang = params.get('lang') || 'en';
         
-        // Įrašome tekstą į div'ą
+        // Įrašome tekstą
         document.getElementById('dynamic-text').innerHTML = texts[lang] || texts['en'];
         
-        // Parodome puslapį
-        window.onload = () => { document.body.style.opacity = "1"; };
+        // ATSIDARYMAS: Kai puslapis įsikrauna, padarome jį matomu po 100ms (dėl sklandumo)
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.body.style.opacity = "1";
+            }, 100);
+        });
         
-        // Išnykimas ir grįžimas
+        // UŽSIDARYMAS: 5 sekundžių pauzė (SEO draugiška) + 0.8s išnykimas
         setTimeout(() => {
             document.body.style.opacity = "0";
             setTimeout(() => {
                 window.location.href = "index.html?lang=" + lang;
             }, 800);
-        }, 3000);
+        }, 5000); // 5000ms = 5 sekundės skaitymo laiko
     </script>
 </body>
 </html>
