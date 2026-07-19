@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -28,8 +28,8 @@
         h1 { font-size: 2rem; margin: 0 0 15px; }
         p { color: rgba(255, 255, 255, 0.7); font-size: 1.1rem; max-width: 600px; margin: 0 auto; line-height: 1.6; }
         
-        /* Svarbu: paslepiame visas sekcijas iškart */
-        .lang-section { display: none; }
+        /* Griežtai paslepiame visas kalbų sekcijas iškart */
+        .lang-section { display: none !important; }
     </style>
 </head>
 <body>
@@ -62,13 +62,15 @@
     </div>
 
     <script>
-        // Kalbos logika
+        // Saugiai paimame kalbą
         const params = new URLSearchParams(window.location.search);
         const lang = params.get('lang') || 'en';
         
-        // Rodyti tik aktyvią kalbą
-        const activeLang = document.getElementById('lang-' + lang) || document.getElementById('lang-en');
-        activeLang.style.display = 'block';
+        // Randame elementą pagal ID
+        const targetSection = document.getElementById('lang-' + lang) || document.getElementById('lang-en');
+        
+        // Priverstinai įjungiame tik šį vieną elementą
+        targetSection.style.setProperty('display', 'block', 'important');
         
         // Puslapio atsiradimas
         window.onload = () => { document.body.style.opacity = "1"; };
