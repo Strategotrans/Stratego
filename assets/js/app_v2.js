@@ -42,57 +42,6 @@ document.addEventListener('DOMContentLoaded', () => {
             "form-name": "Jūsų vardas", "form-email": "Jūsų el. paštas", "form-message": "Jūsų žinutė", "form-submit": "SIŲSTI ŽINUTĘ",
             "label-address": "Adresas:", "label-phone": "Telefonas:", "label-email": "El. paštas:",
             "menu-footer-text": "Premium transporto ir logistikos standartai"
-        },
-        de: {
-            "nav-home": "STARTSEITE", "nav-services": "DIENSTLEISTUNGEN", "nav-gallery": "GALERIE", "nav-about": "ÜBER UNS", "nav-contact": "KONTAKT",
-            "hero-title": "Präzision in Bewegung.<br><span>Europaweit vertraut.</span>",
-            "hero-desc": "Zuverlässige Transportlösungen für Premiumfahrzeuge, Yachten und gewerbliche Fracht.",
-            "services-tag": "UNSERE LEISTUNGEN", "services-title": "Premium Logistiklösungen",
-            "service1-title": "Fahrzeugtransport", "service1-desc": "Sicherer und professioneller Transport von PKWs, Luxusfahrzeugen und Nutzfahrzeugen in ganz Europa.",
-            "service2-title": "Bootstransport", "service2-desc": "Sicherer Transport von Booten, Yachten und Wasserfahrzeugen mit Spezialausrüstung und erfahrenen Fahrern.",
-            "service3-title": "Güterkraftverkehr", "service3-desc": "Internationale Logistiklösungen, maßgeschneidert auf Ihre geschäftlichen Anforderungen.",
-            "service4-title": "Pannenhilfe 24/7", "service4-desc": "Schnelle Pannenhilfe und Fahrzeugbergung in ganz Europa verfügbar.",
-            "gallery-tag": "UNSERE FLOTTE", "gallery-title": "Präzision in Bewegung",
-            "gallery-item1": "Luxusflotte", "gallery-item2": "Sichere Verladung", "gallery-item3": "Professionelles Team", "gallery-item4": "Europaweite Abdeckung",
-            "about-tag": "ÜBER UNS", "about-title": "Angetrieben von Präzision.", "about-text": "Stratego Trans bietet erstklassige Transport-, Logistik- und Speditionsdienstleistungen in ganz Europa mit einem starken Fokus auf Zuverlässigkeit, Sicherheit und Präzision.",
-            "contact-tag": "KONTAKT", "contact-title": "Lassen Sie uns vorankommen",
-            "form-name": "Ihr Name", "form-email": "Ihre E-Mail", "form-message": "Ihre Nachricht", "form-submit": "NACHRICHT SENDEN",
-            "label-address": "Adresse:", "label-phone": "Telefon:", "label-email": "E-Mail:",
-            "menu-footer-text": "Premium Transport- und Logistikstandards"
-        },
-        pl: {
-            "nav-home": "START", "nav-services": "USŁUGI", "nav-gallery": "GALERIA", "nav-about": "O NAS", "nav-contact": "KONTAKT",
-            "hero-title": "Precyzja w ruchu.<br><span>Zaufanie w całej Europie.</span>",
-            "hero-desc": "Niezawodne rozwiązania transportowe dla pojazdów premium, jachtów i ładunków komercyjnych.",
-            "services-tag": "NASZE USŁUGI", "services-title": "Premium rozwiązania logistyczne",
-            "service1-title": "Transport pojazdów", "service1-desc": "Bezpieczny i profesjonalny przewóz samochodów osobowych, luksusowych i komercyjnych w całej Europie.",
-            "service2-title": "Transport łodzi", "service2-desc": "Bezpieczny transport łodzi, jachtów i jednostek pływających przy użyciu specjalistycznego sprzętu.",
-            "service3-title": "Spedycja towarów", "service3-desc": "Międzynarodowe rozwiązania logistyczne dostosowane do wymagań Twojego biznesu.",
-            "service4-title": "Pomoc drogowa 24/7", "service4-desc": "Szybka pomoc drogowa i holowanie dostępne w całej Europie.",
-            "gallery-tag": "NASZA FLOTA", "gallery-title": "Precyzja w ruchu",
-            "gallery-item1": "Flota luksusowa", "gallery-item2": "Bezpieczny załadunek", "gallery-item3": "Profesjonalny zespół", "gallery-item4": "Zasięg europejski",
-            "about-tag": "O NAS", "about-title": "Napędzani precyzją.", "about-text": "Stratego Trans świadczy najwyższej jakości usługi transportowe, logistyczne i spedycyjne w Europie, stawiając na niezawodność, bezpieczeństwo i precyzję.",
-            "contact-tag": "KONTAKT", "contact-title": "Idźmy naprzód",
-            "form-name": "Twoje imię", "form-email": "Twój e-mail", "form-message": "Twoja wiadomość", "form-submit": "WYŚLIJ WIADOMOŚĆ",
-            "label-address": "Adres:", "label-phone": "Telefon:", "label-email": "E-mail:",
-            "menu-footer-text": "Standardy transportu i logistyki premium"
-        },
-        ru: {
-            "nav-home": "ГЛАВНАЯ", "nav-services": "УСЛУГИ", "nav-gallery": "ГАЛЕРЕЯ", "nav-about": "О НАС", "nav-contact": "КОНТАКТЫ",
-            "hero-title": "Точность в движении.<br><span>Доверие по всей Европе.</span>",
-            "hero-desc": "Надежные транспортные решения для премиальных автомобилей, яхт и коммерческих грузов.",
-            "services-tag": "НАШИ УСЛУГИ", "services-title": "Премиум логистические решения",
-            "service1-title": "Перевозка автомобилей", "service1-desc": "Безопасная и профессиональная перевозка легковых, люксовых и коммерческих автомобилей по всей Европе.",
-            "service2-title": "Перевозка катеров", "service2-desc": "Безопасная перевозка катеров, яхт и водной техники со специальным оборудованием.",
-            "service3-title": "Экспедирование грузов", "service3-desc": "Международные логистические решения, адаптированные к потребностям вашего бизнеса.",
-            "service4-title": "Помощь на дороге 24/7", "service4-desc": "Быстрая помощь на дороге и эвакуация доступны по всей Европе.",
-            "gallery-tag": "НАШ АВТОПАРК", "gallery-title": "Точность в движении",
-            "gallery-item1": "Люксовый автопарк", "gallery-item2": "Безопасная погрузка", "gallery-item3": "Профессиональная команда", "gallery-item4": "Европейский охват",
-            "about-tag": "О НАС", "about-title": "Движимые точностью.", "about-text": "Stratego Trans предоставляет первоклассные услуги по транспортировке, логистике и экспедированию грузов в Европе с акцентом на надежность, безопасность и точность.",
-            "contact-tag": "КОНТАКТЫ", "contact-title": "Давайте двигаться вперед",
-            "form-name": "Ваше имя", "form-email": "Ваш эл. адрес", "form-message": "Ваше сообщение", "form-submit": "ОТПРАВИТЬ СООБЩЕНИЕ",
-            "label-address": "Адрес:", "label-phone": "Телефон:", "label-email": "Эл. почта:",
-            "menu-footer-text": "Премиум стандарты транспорта и логистики"
         }
     };
 
@@ -158,7 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
         });
-    }; // ŠITAS SKLIAUSTELIS BUVO PRALEISTAS
+    };
 
     window.addEventListener('scroll', handleScrollAnimation);
     setTimeout(handleScrollAnimation, 150);
