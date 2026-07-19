@@ -3,9 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Nustatymai -->
     <title>Stratego Trans | Premium Transport Solutions</title>
     <meta name="description" content="Stratego Trans - International transport, freight forwarding and vehicle logistics throughout Europe.">
     
+    <!-- Socialinių tinklų nustatymai (Open Graph) -->
+    <meta property="og:title" content="Stratego Trans | Premium Transport Solutions">
+    <meta property="og:description" content="Stratego Trans - International transport, freight forwarding and vehicle logistics throughout Europe.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.strategotrans.eu">
+    
+    <!-- Šriftai ir stiliai -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -145,19 +154,21 @@
         <div class="gallery-grid-masonry">
             <div class="gallery-item item-large scroll-reveal">
                 <img src="assets/images/truck1.jpg" alt="Premium Transport">
-                <div class="gallery-overlay"><span id="gallery-item1">Luxury Fleet</span></div>
-            </div>
-            <div class="gallery-item scroll-reveal">
-                <img src="assets/images/truck2.jpg" alt="Safe Logistics">
-                <div class="gallery-overlay"><span id="gallery-item2">Secure Loading</span></div>
             </div>
             <div class="gallery-item scroll-reveal">
                 <img src="assets/images/truck3.jpg" alt="Professional Team">
-                <div class="gallery-overlay"><span id="gallery-item3">Professional Team</span></div>
+            </div>
+            <div class="gallery-item scroll-reveal">
+                <img src="assets/images/truck23.jpg" alt="Professional Team">
+            </div>
+            <div class="gallery-item scroll-reveal">
+                <img src="assets/images/truck22.jpg" alt="Professional Team">
+            </div>
+            <div class="gallery-item scroll-reveal">
+                <img src="assets/images/truck21.jpg" alt="Professional Team">
             </div>
             <div class="gallery-item item-wide scroll-reveal">
-                <img src="assets/images/truck4.jpg" alt="Across Europe">
-                <div class="gallery-overlay"><span id="gallery-item4">European Coverage</span></div>
+                <img src="assets/images/truck20.jpg" alt="Across Europe">
             </div>
         </div>
     </div>
@@ -179,29 +190,33 @@
 <!-- CONTACT -->
 <section id="contact" class="contact section-scroll">
     <div class="container">
-        <div class="section-title scroll-reveal">
-            <span id="contact-tag">CONTACT</span>
-            <h2 id="contact-title">Let's Move Forward</h2>
-        </div>
-        
-        <form action="https://api.web3forms.com/submit" method="POST" class="contact-form scroll-reveal">
-            <!-- Įrašyk savo Web3Forms raktą čia -->
-            <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+        <div class="contact-container scroll-reveal"> <!-- Čia pridėjome stiklinę kortelę -->
+            <div class="section-title">
+                <span id="contact-tag">CONTACT</span>
+                <h2 id="contact-title">Let's Move Forward</h2>
+            </div>
             
-            <input type="text" name="name" id="form-name" placeholder="Your Name" required>
-            <input type="email" name="email" id="form-email" placeholder="Your E-mail" required>
-            <textarea name="message" id="form-message" placeholder="Your Message" rows="5" required></textarea>
-            
-            <button type="submit" id="form-submit">SEND MESSAGE</button>
-        </form>
+            <form action="https://api.web3forms.com/submit" method="POST" class="contact-form">
+    <!-- Jūsų raktas -->
+    <input type="hidden" name="access_key" value="7f057cee-d1fa-4f00-8242-bbabba4e6e4a">
+    
+    <!-- Paslėptas laukas apsaugai nuo robotų -->
+    <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+    
+    <input type="text" name="name" id="form-name" placeholder="Your Name" required>
+    <input type="email" name="email" id="form-email" placeholder="Your E-mail" required>
+    <textarea name="message" id="form-message" placeholder="Your Message" rows="5" required></textarea>
+    
+    <button type="submit" id="form-submit">SEND MESSAGE</button>
+</form>
 
-        <!-- Kontaktų informacija su ID vertimams -->
-        <div class="contact-info-box scroll-reveal" style="margin-top: 50px; border-top: 1px solid var(--border-light); padding-top: 30px; color: #fff;">
-            <h3 style="margin-bottom: 15px;">Stratego Trans Sp. z o.o.</h3>
-            <p><strong id="label-address">Address:</strong> Maczków 30, 69-108 Maczków, Polska</p>
-            <p><strong id="label-phone">Phone:</strong> <a href="tel:+48515983303" style="color: var(--accent);">+48 515 983 303</a></p>
-            <p><strong id="label-email">E-mail:</strong> <a href="mailto:info@strategotrans.eu" style="color: var(--accent);">info@strategotrans.eu</a></p>
-            <p style="font-size: 0.8em; opacity: 0.6; margin-top: 10px;">KRS: 0001249419</p>
+            <div class="contact-info-box" style="margin-top: 40px; color: #fff;">
+                <h3 style="margin-bottom: 15px;">Stratego Trans Sp. z o.o.</h3>
+                <p><strong id="label-address">Address:</strong> Maczków 30, 69-108 Maczków, Polska</p>
+                <p><strong id="label-phone">Phone:</strong> <a href="tel:+48515983303" style="color: var(--accent);">+48 515 983 303</a></p>
+                <p><strong id="label-email">E-mail:</strong> <a href="mailto:info@strategotrans.eu" style="color: var(--accent);">info@strategotrans.eu</a></p>
+                <p style="font-size: 0.8em; opacity: 0.6; margin-top: 10px;">KRS: 0001249419</p>
+            </div>
         </div>
     </div>
 </section>
