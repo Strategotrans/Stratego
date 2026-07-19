@@ -22,34 +22,14 @@
 </head>
 <body id="top">
 
-<!-- HERO SEKCIJA - TURI BŪTI TIK VIENA -->
+<!-- HERO SEKCIJA -->
 <section class="hero">
-    <div class="video-container">
-        <!-- Pridėjau &autoplay=1&mute=1&loop=1&playlist=NF6zllB9j0A, kad video suktųsi begalybėje be strigimų -->
-        <iframe 
-            src="https://www.youtube.com/embed/NF6zllB9j0A?autoplay=1&mute=1&loop=1&controls=0&playlist=NF6zllB9j0A&playsinline=1&modestbranding=1&showinfo=0&rel=0&iv_load_policy=3&disablekb=1" 
-            frameborder="0" 
-            allow="autoplay; encrypted-media" 
-            allowfullscreen>
-        </iframe>
-    </div>
+    <video autoplay loop muted playsinline webkit-playsinline preload="auto" class="hero-video">
+        <source src="assets/videos/video.mp4" type="video/mp4">
+    </video>
     
     <div class="hero-overlay"></div>
-    
-    <div class="hero-content">
-        <span class="studio-tag reveal-delay-1" style="font-size: 16px; font-weight: 800;">
-            STRATEGO <span style="color: var(--accent);">TRANS</span>
-        </span>
-        <h1 class="reveal" id="hero-title">
-            Driven by Precision.<br>
-            <span>Trusted Across Europe.</span>
-        </h1>
-        <p class="reveal-delay-2" id="hero-desc">
-            Reliable transport solutions for premium vehicles, yachts and commercial freight.
-        </p>
-    </div>
-</section>
-    
+
     <!-- HEADER -->
     <header class="header animate-fade-in">
         <div class="header-inner">
@@ -216,24 +196,19 @@
                 <h2 id="contact-title">Let's Move Forward</h2>
             </div>
             
-            <form action="https://api.web3forms.com/submit" method="POST" class="contact-form" onsubmit="updateRedirect()">
+            <form action="https://api.web3forms.com/submit" method="POST" class="contact-form">
+    <!-- Jūsų raktas -->
     <input type="hidden" name="access_key" value="7f057cee-d1fa-4f00-8242-bbabba4e6e4a">
-    <input type="hidden" name="redirect" id="redirect-input" value="https://strategotrans.eu/aciu.html?lang=en">
     
-    <input type="text" name="name" id="form-name" placeholder="Name" required>
-    <input type="email" name="email" id="form-email" placeholder="E-mail" required>
-    <textarea name="message" id="form-message" placeholder="Message" rows="5" required></textarea>
+    <!-- Paslėptas laukas apsaugai nuo robotų -->
+    <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+    
+    <input type="text" name="name" id="form-name" placeholder="Your Name" required>
+    <input type="email" name="email" id="form-email" placeholder="Your E-mail" required>
+    <textarea name="message" id="form-message" placeholder="Your Message" rows="5" required></textarea>
     
     <button type="submit" id="form-submit">SEND MESSAGE</button>
 </form>
-
-<script>
-    function updateRedirect() {
-        // Pirmiausia imam iš localStorage (kur saugo app.js), jei nėra – fallback į 'en'
-        const currentLang = localStorage.getItem('preferredLang') || 'en';
-        document.getElementById('redirect-input').value = "https://strategotrans.eu/aciu.html?lang=" + currentLang;
-    }
-</script>
 
             <div class="contact-info-box" style="margin-top: 40px; color: #fff;">
                 <h3 style="margin-bottom: 15px;">Stratego Trans Sp. z o.o.</h3>
@@ -255,17 +230,5 @@
 
 <!-- Štai čia prijungiame skriptą, kuris valdo vertimus -->
 <script src="assets/js/app.js"></script>
-
-    <script>
-    function updateRedirect() {
-        const currentLang = localStorage.getItem('preferredLang') || 'en';
-        const redirectInput = document.getElementById('redirect-input');
-        if(redirectInput) {
-            redirectInput.value = "https://strategotrans.eu/aciu.html?lang=" + currentLang;
-        }
-    }
-    // Paleidžiame inicializacijai, kai puslapis užsikrauna
-    window.addEventListener('load', updateRedirect);
-</script>
 </body>
 </html>
