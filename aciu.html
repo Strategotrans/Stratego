@@ -62,15 +62,22 @@
     const params = new URLSearchParams(window.location.search);
     const lang = params.get('lang') || 'en';
     
-    // Rodo teisingą sekciją
+    // Nustatom kalbą
     document.querySelectorAll('.lang-section').forEach(el => el.classList.remove('active'));
     const activeLang = document.getElementById('lang-' + lang) || document.getElementById('lang-en');
     activeLang.classList.add('active');
     
-    // Po 5 sekundžių grąžina į index.html su išsaugota kalba
-    setTimeout(() => { 
-        window.location.href = "index.html?lang=" + lang; 
-    }, 5000); 
+    // Švelnus grįžimas
+    setTimeout(() => {
+        // Pridedam CSS perėjimą visam kūnui
+        document.body.style.transition = "opacity 0.8s ease";
+        document.body.style.opacity = "0";
+        
+        // Palaukiam kol išnyks ir tada nukreipiam
+        setTimeout(() => {
+            window.location.href = "index.html?lang=" + lang;
+        }, 800); // 0.8s laukimas, kol pasimatys efektas
+    }, 4200); // Visas laikas iki išnykimo pradžios (5000ms - 800ms)
 </script>
 </body>
 </html>
