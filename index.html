@@ -196,10 +196,10 @@
                 <h2 id="contact-title">Let's Move Forward</h2>
             </div>
             
-            <form action="https://api.web3forms.com/submit" method="POST" class="contact-form" id="contactForm">
+            <form action="https://api.web3forms.com/submit" method="POST" class="contact-form" id="contactForm" onsubmit="updateRedirect()">
     <input type="hidden" name="access_key" value="7f057cee-d1fa-4f00-8242-bbabba4e6e4a">
     
-    <!-- Šis laukas nukreips į jūsų 'aciu.html' -->
+    <!-- Šis laukas bus automatiškai atnaujintas -->
     <input type="hidden" name="redirect" id="redirectInput" value="https://www.strategotrans.eu/aciu.html">
     
     <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
@@ -212,10 +212,12 @@
 </form>
 
 <script>
-    // Ši funkcija paima kalbą iš localStorage ir prideda ją prie nuorodos
-    const currentLang = localStorage.getItem('preferredLang') || 'en';
-    const redirectInput = document.getElementById('redirectInput');
-    redirectInput.value = "https://www.strategotrans.eu/aciu.html?lang=" + currentLang;
+    function updateRedirect() {
+        // Paimame šviežią kalbą iš localStorage prieš pat išsiunčiant
+        const lang = localStorage.getItem('preferredLang') || 'en';
+        const redirectInput = document.getElementById('redirectInput');
+        redirectInput.value = "https://www.strategotrans.eu/aciu.html?lang=" + lang;
+    }
 </script>
             <div class="contact-info-box" style="margin-top: 40px; color: #fff;">
                 <h3 style="margin-bottom: 15px;">Stratego Trans Sp. z o.o.</h3>
