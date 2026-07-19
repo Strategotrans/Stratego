@@ -96,57 +96,35 @@ img {
     }
 }
 
-/* Griežta struktūra, kad video būtų fonas, o tekstas - ant viršaus */
+/* ==========================================
+   VIDEO HERO SEKCIJA
+========================================== */
 .hero {
-    position: relative !important;
-    width: 100% !important;
-    height: 100vh !important;
-    overflow: hidden !important;
-    display: block !important;
-    margin: 0 !important;
-    padding: 0 !important;
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
 }
 
-.video-container {
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-    z-index: 1 !important;
-    pointer-events: none !important;
-}
-
-.video-container iframe {
-    position: absolute !important;
-    top: 50% !important;
-    left: 50% !important;
-    /* Kad video išsitemptų per visą ekraną be juodų juostų */
-    width: 177.77vh !important; 
-    height: 100vh !important;
-    min-width: 100% !important;
-    min-height: 56.25vw !important;
-    transform: translate(-50%, -50%) !important;
-    filter: brightness(0.5) contrast(1.1) !important;
-    border: none !important;
+.hero-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    filter: brightness(0.35) contrast(1.05);
 }
 
 .hero-overlay {
-    position: absolute !important;
-    inset: 0 !important;
-    z-index: 2 !important;
-    background: rgba(0,0,0,0.4) !important;
-}
-
-.hero-content {
-    position: absolute !important;
-    top: 50% !important;
-    left: 8% !important;
-    transform: translateY(-50%) !important;
-    z-index: 10 !important;
-    width: 90% !important;
-    max-width: 1000px !important;
-    pointer-events: auto !important;
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(5,6,8,0.1) 0%, var(--bg-dark) 98%);
+    z-index: 2;
 }
 
 /* ==========================================
