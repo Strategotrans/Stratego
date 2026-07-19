@@ -11,6 +11,8 @@
             font-family: 'Inter', sans-serif; 
             display: flex; justify-content: center; align-items: center; 
             min-height: 100vh;
+            opacity: 0; /* Pradžioje nematomas, kad galėtume gražiai parodyti */
+            transition: opacity 0.8s ease-in-out;
         }
         body::before {
             content: ''; position: absolute; width: 400px; height: 400px;
@@ -38,46 +40,47 @@
 
         <div id="lang-en" class="lang-section active">
             <h1>Thank You!</h1>
-            <p>Request received. We specialize in freight forwarding, local and international transport, vehicle, yacht, oversized cargo, trailer towing, and roadside assistance. We will contact you shortly.</p>
+            <p>Request received. We will contact you shortly.</p>
         </div>
         <div id="lang-lt" class="lang-section">
             <h1>Ačiū!</h1>
-            <p>Gavome jūsų užklausą. Esame krovinių ekspedijavimo, vietinių ir tarptautinių pervežimų, automobilių, laivų bei negabaritinių krovinių gabenimo ekspertai. Taip pat teikiame techninę pagalbą kelyje. Susisieksime netrukus.</p>
+            <p>Gavome jūsų užklausą. Susisieksime netrukus.</p>
         </div>
         <div id="lang-de" class="lang-section">
             <h1>Danke!</h1>
-            <p>Anfrage erhalten. Wir sind Ihr Partner für Spedition, nationale und internationale Transporte, Fahrzeug- und Yachttransporte, Schwertransporte, Anhängertransport sowie Pannenhilfe. Wir melden uns in Kürze.</p>
+            <p>Anfrage erhalten. Wir melden uns in Kürze.</p>
         </div>
         <div id="lang-pl" class="lang-section">
             <h1>Dziękujemy!</h1>
-            <p>Otrzymaliśmy Twoje zapytanie. Specjalizujemy się w spedycji, transporcie krajowym i międzynarodowym, przewozie aut, łodzi, ładunków ponadgabarytowych, przyczep oraz pomocy drogowej. Wkrótce się skontaktujemy.</p>
+            <p>Otrzymaliśmy Twoje zapytanie. Wkrótce się skontaktujemy.</p>
         </div>
         <div id="lang-ru" class="lang-section">
             <h1>Спасибо!</h1>
-            <p>Ваш запрос получен. Мы специализируемся на экспедировании, международных и местных перевозках, доставке авто, яхт, негабаритных грузов, прицепов и технической помощи на дорогах. Скоро свяжемся с вами.</p>
+            <p>Ваш запрос получен. Скоро свяжемся с вами.</p>
         </div>
     </div>
 
     <script>
-    const params = new URLSearchParams(window.location.search);
-    const lang = params.get('lang') || 'en';
-    
-    // Nustatom kalbą
-    document.querySelectorAll('.lang-section').forEach(el => el.classList.remove('active'));
-    const activeLang = document.getElementById('lang-' + lang) || document.getElementById('lang-en');
-    activeLang.classList.add('active');
-    
-    // Švelnus grįžimas
-    setTimeout(() => {
-        // Pridedam CSS perėjimą visam kūnui
-        document.body.style.transition = "opacity 0.8s ease";
-        document.body.style.opacity = "0";
+        // 1. Puslapio atsiradimas (fade-in)
+        window.addEventListener('load', () => {
+            document.body.style.opacity = "1";
+        });
+
+        // 2. Kalbos nustatymas pagal URL parametrą
+        const params = new URLSearchParams(window.location.search);
+        const lang = params.get('lang') || 'en';
         
-        // Palaukiam kol išnyks ir tada nukreipiam
+        document.querySelectorAll('.lang-section').forEach(el => el.classList.remove('active'));
+        const activeLang = document.getElementById('lang-' + lang) || document.getElementById('lang-en');
+        activeLang.classList.add('active');
+        
+        // 3. Švelnus išnykimas ir automatinis grįžimas po 3.5 sekundžių
         setTimeout(() => {
-            window.location.href = "index.html?lang=" + lang;
-        }, 800); // 0.8s laukimas, kol pasimatys efektas
-    }, 4200); // Visas laikas iki išnykimo pradžios (5000ms - 800ms)
-</script>
+            document.body.style.opacity = "0"; // Pradedam blukinti
+            setTimeout(() => {
+                window.location.href = "index.html?lang=" + lang;
+            }, 800); // 800ms palaukiam, kol įvyks blukimas
+        }, 3500); 
+    </script>
 </body>
 </html>
